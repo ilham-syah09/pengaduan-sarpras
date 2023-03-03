@@ -23,8 +23,9 @@ class Pengaduan extends CI_Controller
 			'title'     => 'Pengaduan',
 			'navbar'    => 'user/navbar',
 			'page'      => 'user/pengaduan',
+			'kategori' => $this->user->getAllKategori(),
 			'pengaduan' => $this->user->getPengaduan([
-				'idUser' => $this->dt_user->id
+				'pengaduan.idUser' => $this->dt_user->id
 			])
 		];
 
@@ -56,6 +57,7 @@ class Pengaduan extends CI_Controller
 
 				$data = [
 					'idUser'     => $this->dt_user->id,
+					'idKategori' => $this->input->post('idKategori'),
 					'judulAduan' => $this->input->post('judulAduan'),
 					'kendala'    => $this->input->post('kendala'),
 					'tanggal'    => date('Y-m-d'),
@@ -67,6 +69,7 @@ class Pengaduan extends CI_Controller
 		} else {
 			$data = [
 				'idUser'     => $this->dt_user->id,
+				'idKategori' => $this->input->post('idKategori'),
 				'judulAduan' => $this->input->post('judulAduan'),
 				'kendala'    => $this->input->post('kendala'),
 				'tanggal'    => date('Y-m-d')
@@ -117,6 +120,7 @@ class Pengaduan extends CI_Controller
 				}
 
 				$data = [
+					'idKategori' => $this->input->post('idKategori'),
 					'judulAduan' => $this->input->post('judulAduan'),
 					'kendala'    => $this->input->post('kendala'),
 					'gambar'     => $upload_data['file_name']
@@ -127,6 +131,7 @@ class Pengaduan extends CI_Controller
 			}
 		} else {
 			$data = [
+				'idKategori' => $this->input->post('idKategori'),
 				'judulAduan' => $this->input->post('judulAduan'),
 				'kendala'    => $this->input->post('kendala')
 			];

@@ -16,6 +16,13 @@ class MAdmin extends CI_Model
 
 		return $this->db->get('kategori')->result();
 	}
+
+	public function getPengaduan()
+	{
+		$this->db->order_by('tanggal', 'desc');
+
+		return $this->db->get('pengaduan')->result();
+	}
 }
 
 /* End of file MAdmin.php */

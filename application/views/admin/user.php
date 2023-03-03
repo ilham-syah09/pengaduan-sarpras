@@ -84,8 +84,8 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body">
-				<form action="<?= base_url('admin/user/add'); ?>" method="post">
+			<form action="<?= base_url('admin/user/add'); ?>" method="post">
+				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
@@ -112,8 +112,8 @@
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 						<button type="submit" class="btn btn-primary">Save changes</button>
 					</div>
-				</form>
-			</div>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
@@ -128,8 +128,8 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body">
-				<form action="<?= base_url('admin/user/edit'); ?>" method="post">
+			<form action="<?= base_url('admin/user/edit'); ?>" method="post">
+				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
@@ -157,8 +157,8 @@
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 						<button type="submit" class="btn btn-primary">Save changes</button>
 					</div>
-				</form>
-			</div>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
