@@ -17,11 +17,34 @@ class MAdmin extends CI_Model
 		return $this->db->get('kategori')->result();
 	}
 
+	public function getTeknisi()
+	{
+		$this->db->where('level', 2);
+		$this->db->order_by('nama', 'asc');
+
+		return $this->db->get('user')->result();
+	}
+
 	public function getPengaduan()
 	{
-		$this->db->order_by('tanggal', 'desc');
+		$this->db->select('pengaduan.*, kategori.namaKategori, user.nama');
+		$this->db->join('kategori', 'kategori.id = pengaduan.idKategori', 'inner');
+		$this->db->join('user', 'user.id = pengaduan.idUser', 'inner');
+
+		$this->db->order_by('pengaduan.tanggal', 'desc');
 
 		return $this->db->get('pengaduan')->result();
+	}
+
+	public function getPlotPengaduan()
+	{
+		$this->db->select('plotPengaduan.*, pengaduan.judulAduan, user.nama');
+		$this->db->join('pengaduan', 'pengaduan.id = plotPengaduan.idPengaduan', 'inner');
+		$this->db->join('user', 'user.id = pengaduan.idUser', 'inner');
+
+		$this->db->order_by('plotPengaduan.status', 'asc');
+
+		return $this->db->get('plotPengaduan')->result();
 	}
 }
 

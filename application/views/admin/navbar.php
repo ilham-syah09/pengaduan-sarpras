@@ -58,6 +58,14 @@
  								<i class="far fa-circle nav-icon"></i>
  								<p>Pengaduan</p>
  							</a>
+ 							<a href="<?= base_url('admin/plot'); ?>" class="nav-link">
+ 								<i class="far fa-circle nav-icon"></i>
+ 								<p>Plot Pengaduan</p>
+ 							</a>
+ 							<a href="<?= base_url('admin/report'); ?>" class="nav-link">
+ 								<i class="far fa-circle nav-icon"></i>
+ 								<p>Report Pengaduan</p>
+ 							</a>
  						</li>
  					</ul>
  				</li>

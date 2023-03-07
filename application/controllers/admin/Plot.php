@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class pengaduan extends CI_Controller
+class Plot extends CI_Controller
 {
 	public function __construct()
 	{
@@ -20,24 +20,25 @@ class pengaduan extends CI_Controller
 	public function index()
 	{
 		$data = [
-			'title'   => 'Pengaduan',
+			'title'   => 'Plot Pengaduan',
 			'navbar'  => 'admin/navbar',
-			'page'    => 'admin/pengaduan',
-			'pengaduan' => $this->admin->getPengaduan(),
+			'page'    => 'admin/plot',
+			'plot'    => $this->admin->getPlotPengaduan(),
 			'teknisi' => $this->admin->getTeknisi()
 		];
 
 		$this->load->view('index', $data);
 	}
 
-	public function status()
+	public function edit()
 	{
 		$data = [
-			'status' => $this->input->post('status')
+			'idUser' => $this->input->post('idUser'),
+			'urgensi' => $this->input->post('urgensi'),
 		];
 
-		$this->db->where('id', $this->input->post('idPengaduan'));
-		$update = $this->db->update('pengaduan', $data);
+		$this->db->where('id', $this->input->post('idPlot'));
+		$update = $this->db->update('plotPengaduan', $data);
 
 		if ($update) {
 			$this->session->set_flashdata('toastr-success', 'Data berhasil diedit');
@@ -45,7 +46,7 @@ class pengaduan extends CI_Controller
 			$this->session->set_flashdata('toastr-error', 'Data gagal diedit');
 		}
 
-		redirect('admin/pengaduan', 'refresh');
+		redirect('admin/plot', 'refresh');
 	}
 
 	public function delete($id)
@@ -68,35 +69,6 @@ class pengaduan extends CI_Controller
 
 		redirect('admin/pengaduan', 'refresh');
 	}
-
-	public function plot()
-	{
-		$data = [
-			'idPengaduan' => $this->input->post('idPengaduan'),
-			'idUser'      => $this->input->post('idUser'),
-			'urgensi'     => $this->input->post('urgensi')
-		];
-
-		$this->db->where([
-			'idPengaduan' => $this->input->post('idPengaduan'),
-			'idUser'      => $this->input->post('idUser'),
-		]);
-		$cek = $this->db->get('plotPengaduan')->row();
-
-		if (!$cek) {
-			$insert = $this->db->insert('plotPengaduan', $data);
-
-			if ($insert) {
-				$this->session->set_flashdata('toastr-success', 'Data berhasil ditambahkan');
-			} else {
-				$this->session->set_flashdata('toastr-error', 'Data gagal ditambahkan');
-			}
-		} else {
-			$this->session->set_flashdata('toastr-error', 'Data sudah ditambahkan');
-		}
-
-		redirect('admin/pengaduan', 'refresh');
-	}
 }
 
-/* End of file pengaduan.php */
+/* End of file Plot.php */

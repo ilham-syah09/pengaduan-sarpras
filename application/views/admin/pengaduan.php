@@ -25,6 +25,8 @@
 									<thead>
 										<tr>
 											<th class="text-center">#</th>
+											<th>Nama Pelapor</th>
+											<th>Kategori</th>
 											<th>Judul Aduan</th>
 											<th>Kendala</th>
 											<th>Tanggal</th>
@@ -38,6 +40,8 @@
 										foreach ($pengaduan as $dt) : ?>
 											<tr>
 												<td class="text-center"><?= $i++; ?></td>
+												<td><?= $dt->nama; ?></td>
+												<td><?= $dt->namaKategori; ?></td>
 												<td><?= $dt->judulAduan; ?></td>
 												<td><?= $dt->kendala; ?></td>
 												<td><?= date('d M Y', strtotime($dt->tanggal)); ?></td>
@@ -56,15 +60,17 @@
 													<?php if ($dt->status == 0) : ?>
 														<span class="badge badge-warning">Menunggu</span>
 													<?php elseif ($dt->status == 1) : ?>
-														<span class="badge badge-warning">Disetujui</span>
-													<?php elseif ($dt->status == 3) : ?>
+														<span class="badge badge-success">Disetujui</span>
+													<?php elseif ($dt->status == 2) : ?>
 														<span class="badge badge-danger">Ditolak</span>
 													<?php endif; ?>
 												</td>
 												<td>
 													<?php if ($dt->status == 0) : ?>
-														<a href="#" class="badge badge-warning edit_btn" data-toggle="modal" data-target="#editPengaduan" data-id="<?= $dt->id; ?>" data-juduladuan="<?= $dt->judulAduan; ?>" data-kendala="<?= $dt->kendala; ?>" data-tanggal="<?= $dt->tanggal; ?>">Edit</a>
-														<a href="<?= base_url('user/pengaduan/delete/' . $dt->id); ?>" onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')" class="badge badge-danger">Delete</a>
+														<a href="#" class="badge badge-info status_btn" data-toggle="modal" data-target="#editStatus" data-id="<?= $dt->id; ?>" data-status="<?= $dt->status; ?>">Status</a>
+														<a href="<?= base_url('admin/pengaduan/delete/' . $dt->id); ?>" onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')" class="badge badge-danger">Delete</a>
+													<?php elseif ($dt->status == 1) : ?>
+														<a href="#" class="badge badge-primary plot_btn" data-toggle="modal" data-target="#plotPengaduan" data-id="<?= $dt->id; ?>">Plot Pengaduan</a>
 													<?php endif; ?>
 												</td>
 											</tr>
@@ -85,31 +91,72 @@
 <!-- /.content-wrapper -->
 
 <!-- modal edit -->
-<div class="modal fade" id="editPengaduan" tabindex="-1" role="dialog" aria-labelledby="editPengaduan" aria-hidden="true">
+<div class="modal fade" id="editStatus" tabindex="-1" role="dialog" aria-labelledby="editStatus" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Edit PEngaduan</h5>
+				<h5 class="modal-title">Edit Status</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="<?= base_url('user/pengaduan/edit'); ?>" method="post" enctype="multipart/form-data">
+			<form action="<?= base_url('admin/pengaduan/status'); ?>" method="post">
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label>Judul Aduan</label>
+								<label>Status</label>
 								<input type="hidden" name="idPengaduan" id="idPengaduan">
-								<input type="text" class="form-control" name="judulAduan" id="judulAduan">
+								<select name="status" id="status" class="form-control">
+									<option value="0">Menunggu</option>
+									<option value="1">Disetujui</option>
+									<option value="2">Ditolak</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- modal plot -->
+<div class="modal fade" id="plotPengaduan" tabindex="-1" role="dialog" aria-labelledby="plotPengaduan" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Plot Pengaduan</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form action="<?= base_url('admin/pengaduan/plot'); ?>" method="post">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label>Teknisi</label>
+								<input type="hidden" name="idPengaduan" id="idPengaduanPlot">
+								<select name="idUser" class="form-control">
+									<option value="">-- Pilih Teknisi --</option>
+									<?php foreach ($teknisi as $user) : ?>
+										<option value="<?= $user->id; ?>"><?= $user->nama; ?></option>
+									<?php endforeach; ?>
+								</select>
 							</div>
 							<div class="form-group">
-								<label>Kendala</label>
-								<input type="text" class="form-control" name="kendala" id="kendala">
-							</div>
-							<div class="form-group">
-								<label>Gambar <sup class="text-warning">(opsional)</sup></label>
-								<input type="file" class="form-control" name="gambar" accept=".jpeg, .jpg, .png">
+								<label>Urgensi</label>
+								<select name="urgensi" class="form-control">
+									<option value="">-- Pilih Urgensi --</option>
+									<option value="Low">Low</option>
+									<option value="Middle">Middle</option>
+									<option value="High">High</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -124,17 +171,25 @@
 </div>
 
 <script>
-	let edit_btn = $('.edit_btn');
+	let status_btn = $('.status_btn');
 
-	$(edit_btn).each(function(i) {
-		$(edit_btn[i]).click(function() {
+	$(status_btn).each(function(i) {
+		$(status_btn[i]).click(function() {
 			let id = $(this).data('id');
-			let judulAduan = $(this).data('juduladuan');
-			let kendala = $(this).data('kendala');
+			let status = $(this).data('status');
 
 			$('#idPengaduan').val(id);
-			$('#judulAduan').val(judulAduan);
-			$('#kendala').val(kendala);
+			$('#status').val(status);
+		});
+	});
+
+	let plot_btn = $('.plot_btn');
+
+	$(plot_btn).each(function(i) {
+		$(plot_btn[i]).click(function() {
+			let id = $(this).data('id');
+
+			$('#idPengaduanPlot').val(id);
 		});
 	});
 </script>
