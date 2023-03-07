@@ -58,3 +58,6 @@ $route['admin'] = 'admin/home';
 
 // user
 $route['user'] = 'user/home';
+
+// user
+$route['teknisi'] = 'teknisi/home';

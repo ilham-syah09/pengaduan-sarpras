@@ -71,6 +71,12 @@
 														<a href="#" class="badge badge-warning edit_btn" data-toggle="modal" data-target="#editPengaduan" data-id="<?= $dt->id; ?>" data-juduladuan="<?= $dt->judulAduan; ?>" data-idkategori="<?= $dt->idKategori; ?>" data-kendala="<?= $dt->kendala; ?>" data-tanggal="<?= $dt->tanggal; ?>">Edit</a>
 														<a href="<?= base_url('user/pengaduan/delete/' . $dt->id); ?>" onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')" class="badge badge-danger">Delete</a>
 													<?php endif; ?>
+
+													<?php $report = cekReport($dt->id); ?>
+
+													<?php if ($report != false) : ?>
+														<a href="#" class="badge badge-warning report_btn" data-toggle="modal" data-target="#viewReport" data-solusi="<?= $report->solusi; ?>" data-rincian="<?= $report->rincian; ?>" data-gambar="<?= $report->gambar; ?>">Lihat Report</a>
+													<?php endif; ?>
 												</td>
 											</tr>
 										<?php endforeach; ?>
@@ -184,6 +190,44 @@
 	</div>
 </div>
 
+<!-- modal view report -->
+<div class="modal fade" id="viewReport" tabindex="-1" role="dialog" aria-labelledby="viewReport" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Report Pengaduan</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label>Solusi</label>
+							<input type="text" name="solusi" class="form-control" id="solusi">
+						</div>
+						<div class="form-group">
+							<label>Rincian Pekerjaan</label>
+							<textarea name="rincian" class="form-control" cols="30" rows="8" id="rincian"></textarea>
+						</div>
+						<div class="form-group">
+							<label>Gambar</label>
+							<br>
+							<img src="" alt="Gambar Report" class="img-thumbnail" width="100%" id="gambar">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+
 <script>
 	let edit_btn = $('.edit_btn');
 
@@ -198,6 +242,21 @@
 			$('#judulAduan').val(judulAduan);
 			$('#idKategori').val(idKategori);
 			$('#kendala').val(kendala);
+		});
+	});
+
+	let report_btn = $('.report_btn');
+
+	$(report_btn).each(function(i) {
+		$(report_btn[i]).click(function() {
+			let solusi = $(this).data('solusi');
+			let rincian = $(this).data('rincian');
+			let gambar = $(this).data('gambar');
+
+			$('#solusi').val(solusi);
+			$('#rincian').val(rincian);
+
+			$("#gambar").attr("src", `<?= base_url('upload/report/'); ?>${gambar}`);
 		});
 	});
 </script>

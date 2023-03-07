@@ -110,8 +110,12 @@
     <script src="<?= base_url(); ?>assets/plugins/toastr/toastr.min.js"></script>
     <script src="<?= base_url(); ?>assets/plugins/toastr/customScript.js"></script>
 
+    <script src="<?= base_url('assets/plugins/jquery.maskedinput/'); ?>jquery.maskedinput.min.js"></script>
+
     <script>
         $('#example').DataTable();
+
+        $('.js-masked-time').mask('99:99');
     </script>
 </body>
 

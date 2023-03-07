@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 03, 2023 at 01:22 PM
+-- Generation Time: Mar 07, 2023 at 08:08 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.14
 
@@ -65,7 +65,7 @@ CREATE TABLE `pengaduan` (
 --
 
 INSERT INTO `pengaduan` (`id`, `idUser`, `idKategori`, `judulAduan`, `kendala`, `tanggal`, `gambar`, `status`, `createdAt`, `updatedAt`) VALUES
-(3, 3, 1, 'Wifi error', 'ga bisa konek', '2023-03-03', '0815841bdd44ae924e38a4b34a9928e8.png', 0, '2023-03-03 04:39:02', '2023-03-03 04:39:17');
+(4, 3, 1, 'Wifi error', 'ga bisa konek', '2023-03-07', '1b5510567a1a31781b4ddbb69c833d94.png', 1, '2023-03-07 06:37:08', '2023-03-07 06:39:36');
 
 -- --------------------------------------------------------
 
@@ -78,9 +78,46 @@ CREATE TABLE `plotPengaduan` (
   `idPengaduan` int(11) NOT NULL,
   `idUser` int(11) NOT NULL,
   `urgensi` varchar(20) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
   `updatedAt` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `plotPengaduan`
+--
+
+INSERT INTO `plotPengaduan` (`id`, `idPengaduan`, `idUser`, `urgensi`, `status`, `createdAt`, `updatedAt`) VALUES
+(3, 4, 2, 'Middle', 1, '2023-03-07 06:39:44', '2023-03-07 06:43:57');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `report`
+--
+
+CREATE TABLE `report` (
+  `id` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL,
+  `idPlot` int(11) NOT NULL,
+  `idPengaduan` int(11) NOT NULL,
+  `solusi` varchar(255) NOT NULL,
+  `rincian` text NOT NULL,
+  `tanggal_mulai` date NOT NULL,
+  `jam_mulai` time NOT NULL,
+  `tanggal_selesai` date NOT NULL,
+  `jam_selesai` time NOT NULL,
+  `gambar` text NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `report`
+--
+
+INSERT INTO `report` (`id`, `idUser`, `idPlot`, `idPengaduan`, `solusi`, `rincian`, `tanggal_mulai`, `jam_mulai`, `tanggal_selesai`, `jam_selesai`, `gambar`, `createdAt`, `updatedAt`) VALUES
+(3, 2, 3, 4, 'Restart perangkat', 'Restart smartphone atau pc, kemudian koneksikan kembali', '2023-03-07', '13:40:00', '2023-03-07', '13:50:00', '75f57a6e2890affaaf147b03e5b46349.png', '2023-03-07 06:43:57', NULL);
 
 -- --------------------------------------------------------
 
@@ -131,6 +168,12 @@ ALTER TABLE `plotPengaduan`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `report`
+--
+ALTER TABLE `report`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -150,13 +193,19 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `pengaduan`
 --
 ALTER TABLE `pengaduan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `plotPengaduan`
 --
 ALTER TABLE `plotPengaduan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `report`
+--
+ALTER TABLE `report`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`

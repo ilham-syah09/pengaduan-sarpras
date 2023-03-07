@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Plot extends CI_Controller
+class Report extends CI_Controller
 {
 	public function __construct()
 	{
@@ -20,48 +20,40 @@ class Plot extends CI_Controller
 	public function index()
 	{
 		$data = [
-			'title'   => 'Plot Pengaduan',
+			'title'   => 'Report Pengaduan',
 			'navbar'  => 'admin/navbar',
-			'page'    => 'admin/plot',
-			'plot'    => $this->admin->getPlotPengaduan(),
-			'teknisi' => $this->admin->getTeknisi()
+			'page'    => 'admin/report',
+			'report'    => $this->admin->getReportPengaduan()
 		];
 
 		$this->load->view('index', $data);
 	}
 
-	public function edit()
-	{
-		$data = [
-			'idUser' => $this->input->post('idUser'),
-			'urgensi' => $this->input->post('urgensi'),
-		];
-
-		$this->db->where('id', $this->input->post('idPlot'));
-		$update = $this->db->update('plotPengaduan', $data);
-
-		if ($update) {
-			$this->session->set_flashdata('toastr-success', 'Data berhasil diedit');
-		} else {
-			$this->session->set_flashdata('toastr-error', 'Data gagal diedit');
-		}
-
-		redirect('admin/plot', 'refresh');
-	}
-
 	public function delete($id)
 	{
 		$this->db->where('id', $id);
-		$delete = $this->db->delete('plotPengaduan');
+		$data = $this->db->get('report')->row();
+
+		$this->db->where('id', $id);
+		$delete = $this->db->delete('report');
 
 		if ($delete) {
+			if ($data->gambar != null) {
+				unlink(FCPATH . 'upload/report/' . $data->gambar);
+			}
+
+			$this->db->where('id', $data->idPlot);
+			$this->db->update('plotPengaduan', [
+				'status' => 0
+			]);
+
 			$this->session->set_flashdata('toastr-success', 'Data berhasil dihapus');
 		} else {
 			$this->session->set_flashdata('toastr-error', 'Data gagal dihapus!!');
 		}
 
-		redirect('admin/plot', 'refresh');
+		redirect('admin/report', 'refresh');
 	}
 }
 
-/* End of file Plot.php */
+/* End of file Report.php */
