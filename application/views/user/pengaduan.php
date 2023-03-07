@@ -205,11 +205,11 @@
 					<div class="col-md-12">
 						<div class="form-group">
 							<label>Solusi</label>
-							<input type="text" name="solusi" class="form-control" id="solusi">
+							<input type="text" name="solusi" class="form-control" id="solusi" readonly>
 						</div>
 						<div class="form-group">
 							<label>Rincian Pekerjaan</label>
-							<textarea name="rincian" class="form-control" cols="30" rows="8" id="rincian"></textarea>
+							<textarea name="rincian" class="form-control" cols="30" rows="8" id="rincian" readonly></textarea>
 						</div>
 						<div class="form-group">
 							<label>Gambar</label>
