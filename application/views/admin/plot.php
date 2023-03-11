@@ -26,7 +26,8 @@
 										<tr>
 											<th class="text-center">#</th>
 											<th>Judul Aduan</th>
-											<th>Nama User</th>
+											<th>Nama Pengadu</th>
+											<th>Nama Teknisi</th>
 											<th>Urgensi</th>
 											<th>Status</th>
 											<th>Action</th>
@@ -38,7 +39,8 @@
 											<tr>
 												<td class="text-center"><?= $i++; ?></td>
 												<td><?= $dt->judulAduan; ?></td>
-												<td><?= $dt->nama; ?></td>
+												<td><?= nama($dt->userId); ?></td>
+												<td><?= nama($dt->idUser); ?></td>
 												<td>
 													<?php if ($dt->urgensi == 'Low') : ?>
 														<span class="badge badge-warning">Low</span>
@@ -50,7 +52,7 @@
 												</td>
 												<td>
 													<?php if ($dt->status == 0) : ?>
-														<span class="badge badge-warning">Menunggu</span>
+														<span class="badge badge-warning">Belum Diproses</span>
 													<?php elseif ($dt->status == 1) : ?>
 														<span class="badge badge-success">Selesai</span>
 													<?php endif; ?>

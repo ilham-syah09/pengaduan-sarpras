@@ -38,9 +38,8 @@ class MAdmin extends CI_Model
 
 	public function getPlotPengaduan()
 	{
-		$this->db->select('plotPengaduan.*, pengaduan.judulAduan, user.nama');
+		$this->db->select('plotPengaduan.*, pengaduan.judulAduan, pengaduan.idUser as userId');
 		$this->db->join('pengaduan', 'pengaduan.id = plotPengaduan.idPengaduan', 'inner');
-		$this->db->join('user', 'user.id = pengaduan.idUser', 'inner');
 
 		$this->db->order_by('plotPengaduan.status', 'asc');
 

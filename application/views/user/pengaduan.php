@@ -34,6 +34,7 @@
 											<th>Tanggal</th>
 											<th>Gambar</th>
 											<th>Status</th>
+											<th>Tanggal Ditanggapi</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -66,6 +67,7 @@
 														<span class="badge badge-danger">Ditolak</span>
 													<?php endif; ?>
 												</td>
+												<td><?= ($dt->ditanggapi) ?  date('d M Y', strtotime($dt->ditanggapi)) : ''; ?></td>
 												<td>
 													<?php if ($dt->status == 0) : ?>
 														<a href="#" class="badge badge-warning edit_btn" data-toggle="modal" data-target="#editPengaduan" data-id="<?= $dt->id; ?>" data-juduladuan="<?= $dt->judulAduan; ?>" data-idkategori="<?= $dt->idKategori; ?>" data-kendala="<?= $dt->kendala; ?>" data-tanggal="<?= $dt->tanggal; ?>">Edit</a>
@@ -75,7 +77,7 @@
 													<?php $report = cekReport($dt->id); ?>
 
 													<?php if ($report != false) : ?>
-														<a href="#" class="badge badge-warning report_btn" data-toggle="modal" data-target="#viewReport" data-solusi="<?= $report->solusi; ?>" data-rincian="<?= $report->rincian; ?>" data-gambar="<?= $report->gambar; ?>">Lihat Report</a>
+														<a href="#" class="badge badge-warning report_btn" data-toggle="modal" data-target="#viewReport" data-selesai="<?= date('Y-m-d', strtotime($report->createdAt)); ?>" data-solusi="<?= $report->solusi; ?>" data-rincian="<?= $report->rincian; ?>" data-gambar="<?= $report->gambar; ?>">Lihat Report</a>
 													<?php endif; ?>
 												</td>
 											</tr>
@@ -204,6 +206,10 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="form-group">
+							<label>Tanggal Diselesaikan</label>
+							<input type="date" name="selesai" class="form-control" id="selesai" readonly>
+						</div>
+						<div class="form-group">
 							<label>Solusi</label>
 							<input type="text" name="solusi" class="form-control" id="solusi" readonly>
 						</div>
@@ -248,11 +254,13 @@
 
 	$(report_btn).each(function(i) {
 		$(report_btn[i]).click(function() {
+			let selesai = $(this).data('selesai');
 			let solusi = $(this).data('solusi');
 			let rincian = $(this).data('rincian');
 			let gambar = $(this).data('gambar');
 
 			$('#solusi').val(solusi);
+			$('#selesai').val(selesai);
 			$('#rincian').val(rincian);
 
 			$("#gambar").attr("src", `<?= base_url('upload/report/'); ?>${gambar}`);

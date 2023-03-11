@@ -62,7 +62,7 @@
 												</td>
 												<td>
 													<?php if ($dt->status == 0) : ?>
-														<span class="badge badge-warning">Menunggu</span>
+														<span class="badge badge-warning">Belum Diproses</span>
 													<?php elseif ($dt->status == 1) : ?>
 														<span class="badge badge-success">Selesai</span>
 													<?php endif; ?>

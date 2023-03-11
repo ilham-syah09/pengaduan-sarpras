@@ -33,7 +33,8 @@ class pengaduan extends CI_Controller
 	public function status()
 	{
 		$data = [
-			'status' => $this->input->post('status')
+			'status' => $this->input->post('status'),
+			'ditanggapi' => date('Y-m-d')
 		];
 
 		$this->db->where('id', $this->input->post('idPengaduan'));
