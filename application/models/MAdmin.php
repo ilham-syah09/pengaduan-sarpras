@@ -10,6 +10,29 @@ class MAdmin extends CI_Model
 		return $this->db->get('user')->result();
 	}
 
+	public function getCount($tabel)
+	{
+		return $this->db->get($tabel)->num_rows();
+	}
+
+	public function getUserGrafik()
+	{
+		$this->db->select('COUNT(id) as total, level');
+		$this->db->group_by('level');
+
+		return $this->db->get('user')->result();
+	}
+
+	public function getAduanGrafik()
+	{
+		$this->db->select('COUNT(pengaduan.id) as total, plotPengaduan.status as status');
+		$this->db->join('plotPengaduan', 'plotPengaduan.idPengaduan = pengaduan.id', 'left');
+
+		$this->db->group_by('plotPengaduan.status');
+
+		return $this->db->get('pengaduan')->result();
+	}
+
 	public function getAllKategori()
 	{
 		$this->db->order_by('namaKategori');
