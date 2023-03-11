@@ -26,7 +26,7 @@
 										<tr>
 											<th class="text-center">#</th>
 											<th>Judul Aduan</th>
-											<th>Nama Teknisi</th>
+											<th>Nama User</th>
 											<th>Urgensi</th>
 											<th>Status</th>
 											<th>Action</th>

@@ -44,30 +44,30 @@
  						</li>
  					</ul>
  				</li>
+ 				<li class="nav-header">Data Pengaduan</li>
  				<li class="nav-item">
- 					<a href="#" class="nav-link">
- 						<i class="nav-icon fas fa-clipboard-list"></i>
+ 					<a href="<?= base_url('admin/pengaduan'); ?>" class="nav-link">
+ 						<i class="nav-icon fas fa-book"></i>
  						<p>
- 							Data Pengaduan
- 							<i class="fas fa-angle-left right"></i>
+ 							Pengaduan
  						</p>
  					</a>
- 					<ul class="nav nav-treeview">
- 						<li class="nav-item">
- 							<a href="<?= base_url('admin/pengaduan'); ?>" class="nav-link">
- 								<i class="far fa-circle nav-icon"></i>
- 								<p>Pengaduan</p>
- 							</a>
- 							<a href="<?= base_url('admin/plot'); ?>" class="nav-link">
- 								<i class="far fa-circle nav-icon"></i>
- 								<p>Plot Pengaduan</p>
- 							</a>
- 							<a href="<?= base_url('admin/report'); ?>" class="nav-link">
- 								<i class="far fa-circle nav-icon"></i>
- 								<p>Report Pengaduan</p>
- 							</a>
- 						</li>
- 					</ul>
+ 				</li>
+ 				<li class="nav-item">
+ 					<a href="<?= base_url('admin/plot'); ?>" class="nav-link">
+ 						<i class="nav-icon fas fa-user-alt"></i>
+ 						<p>
+ 							Plot Pengaduan
+ 						</p>
+ 					</a>
+ 				</li>
+ 				<li class="nav-item">
+ 					<a href="<?= base_url('admin/report'); ?>" class="nav-link">
+ 						<i class="nav-icon fas fa-file"></i>
+ 						<p>
+ 							Report Pengaduan
+ 						</p>
+ 					</a>
  				</li>
  			</ul>
  		</nav>
