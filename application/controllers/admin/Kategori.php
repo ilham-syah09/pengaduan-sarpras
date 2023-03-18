@@ -23,7 +23,8 @@ class Kategori extends CI_Controller
 			'title'    => 'Kategori Pengaduan',
 			'navbar'   => 'admin/navbar',
 			'page'     => 'admin/kategori',
-			'kategori' => $this->admin->getAllKategori()
+			'kategori' => $this->admin->getAllKategori(),
+			'notif'  => $this->admin->getCountAduan(),
 		];
 
 		$this->load->view('index', $data);

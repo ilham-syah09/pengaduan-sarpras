@@ -44,6 +44,25 @@
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-bell"></i>
+                        <?php if (!$notif) : ?>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                                <a href="#" class="dropdown-item">
+                                    <i class="fas fa-envelope mr-2"></i>tidak ada pengaduan
+                                </a>
+                            </div>
+                        <?php else : ?>
+                            <span class="badge badge-warning navbar-badge"><?= $notif; ?></span>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                                <a href="<?= base_url('admin/pengaduan'); ?>" class="dropdown-item">
+                                    <i class="fas fa-envelope mr-2"></i> <?= $notif; ?> pengaduan baru
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                    </a>
+                </li>
                 <!-- Messages Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">

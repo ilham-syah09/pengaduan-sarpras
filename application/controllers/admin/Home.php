@@ -27,6 +27,7 @@ class Home extends CI_Controller
             'aduan'  => $this->admin->getCount('pengaduan'),
             'plot'   => $this->admin->getCount('plotPengaduan'),
             'report' => $this->admin->getCount('report'),
+            'notif'  => $this->admin->getCountAduan(),
             'userGrafik' => $this->admin->getUserGrafik(),
             'aduanGrafik' => $this->admin->getAduanGrafik(),
         ];

@@ -23,7 +23,8 @@ class User extends CI_Controller
 			'title'  => 'Management User',
 			'navbar' => 'admin/navbar',
 			'page'   => 'admin/user',
-			'user'   => $this->admin->getAllUser()
+			'user'   => $this->admin->getAllUser(),
+			'notif'  => $this->admin->getCountAduan(),
 		];
 
 		$this->load->view('index', $data);

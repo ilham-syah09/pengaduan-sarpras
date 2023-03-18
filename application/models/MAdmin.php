@@ -84,6 +84,12 @@ class MAdmin extends CI_Model
 	{
 		return $this->db->get('setting', 1)->row();
 	}
+
+	public function getCountAduan()
+	{
+		$this->db->where('status', 0);
+		return $this->db->get('pengaduan')->num_rows();
+	}
 }
 
 /* End of file MAdmin.php */

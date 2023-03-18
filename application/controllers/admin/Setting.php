@@ -28,7 +28,8 @@ class Setting extends CI_Controller
                 'title'   => 'Setting',
                 'navbar'  => 'admin/navbar',
                 'page'    => 'admin/setting',
-                'setting' => $this->admin->getSetting()
+                'setting' => $this->admin->getSetting(),
+                'notif'  => $this->admin->getCountAduan(),
             ];
 
             $this->load->view('index', $data);

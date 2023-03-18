@@ -24,7 +24,8 @@ class pengaduan extends CI_Controller
 			'navbar'  => 'admin/navbar',
 			'page'    => 'admin/pengaduan',
 			'pengaduan' => $this->admin->getPengaduan(),
-			'teknisi' => $this->admin->getTeknisi()
+			'teknisi' => $this->admin->getTeknisi(),
+			'notif'  => $this->admin->getCountAduan(),
 		];
 
 		$this->load->view('index', $data);

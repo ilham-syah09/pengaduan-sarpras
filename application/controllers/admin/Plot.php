@@ -24,7 +24,8 @@ class Plot extends CI_Controller
 			'navbar'  => 'admin/navbar',
 			'page'    => 'admin/plot',
 			'plot'    => $this->admin->getPlotPengaduan(),
-			'teknisi' => $this->admin->getTeknisi()
+			'teknisi' => $this->admin->getTeknisi(),
+			'notif'  => $this->admin->getCountAduan(),
 		];
 
 		$this->load->view('index', $data);

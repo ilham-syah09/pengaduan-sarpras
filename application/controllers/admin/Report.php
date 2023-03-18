@@ -23,7 +23,8 @@ class Report extends CI_Controller
 			'title'   => 'Report Pengaduan',
 			'navbar'  => 'admin/navbar',
 			'page'    => 'admin/report',
-			'report'    => $this->admin->getReportPengaduan()
+			'report'    => $this->admin->getReportPengaduan(),
+			'notif'  => $this->admin->getCountAduan(),
 		];
 
 		$this->load->view('index', $data);

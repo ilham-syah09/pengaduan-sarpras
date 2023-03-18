@@ -77,7 +77,7 @@
 													<?php $report = cekReport($dt->id); ?>
 
 													<?php if ($report != false) : ?>
-														<a href="#" class="badge badge-warning report_btn" data-toggle="modal" data-target="#viewReport" data-selesai="<?= date('Y-m-d', strtotime($report->createdAt)); ?>" data-solusi="<?= $report->solusi; ?>" data-rincian="<?= $report->rincian; ?>" data-gambar="<?= $report->gambar; ?>">Lihat Report</a>
+														<a href="#" class="badge badge-warning report_btn" data-toggle="modal" data-target="#viewReport" data-selesai="<?= date('Y-m-d', strtotime($report->tanggal_selesai)); ?>" data-solusi="<?= $report->solusi; ?>" data-rincian="<?= $report->rincian; ?>" data-gambar="<?= $report->gambar; ?>">Lihat Report</a>
 													<?php endif; ?>
 												</td>
 											</tr>
