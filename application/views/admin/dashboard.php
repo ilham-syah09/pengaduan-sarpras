@@ -122,7 +122,7 @@
 			level = 'Teknisi';
 		} else if (user[i].level == 3) {
 			level = 'Dosen';
-		} else if (user[i].level == 1) {
+		} else if (user[i].level == 4) {
 			level = 'Mahasiswa';
 		}
 
@@ -138,7 +138,7 @@
 			plotBorderWidth: null,
 			plotShadow: false,
 			type: 'pie',
-			backgroundColor: '#343A40',
+			backgroundColor: '#fff',
 		},
 		title: {
 			style: {
@@ -183,8 +183,10 @@
 		var status;
 		if (aduan[i].status == 1) {
 			status = 'Selesai';
+		} else if (aduan[i].status == 2) {
+			status = 'Ditolak';
 		} else {
-			status = 'Belum Diproses';
+			status = 'Belum di proses'
 		}
 
 		dataAduan.push({
@@ -199,7 +201,7 @@
 			plotBorderWidth: null,
 			plotShadow: false,
 			type: 'pie',
-			backgroundColor: '#343A40',
+			backgroundColor: '#fff',
 		},
 		title: {
 			style: {

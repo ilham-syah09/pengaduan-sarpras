@@ -79,6 +79,11 @@ class MAdmin extends CI_Model
 
 		return $this->db->get('report')->result();
 	}
+
+	public function getSetting()
+	{
+		return $this->db->get('setting', 1)->row();
+	}
 }
 
 /* End of file MAdmin.php */

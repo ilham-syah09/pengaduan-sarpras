@@ -1,9 +1,11 @@
  <!-- Main Sidebar Container -->
- <aside class="main-sidebar sidebar-dark-primary elevation-4">
+ <aside class="main-sidebar sidebar-light-primary elevation-2">
  	<!-- Brand Logo -->
- 	<a href="<?= base_url('teknisi'); ?>" class="brand-link">
- 		<span class="brand-text font-weight-bold">SARPRAS</span>
- 	</a>
+ 	<div class="text-center">
+ 		<a href="<?= base_url('teknisi'); ?>" class="brand-link">
+ 			<span class="brand-text font-weight-bold"><i class="fas fa-box"></i> SIPMAS</span>
+ 		</a>
+ 	</div>
 
  	<!-- Sidebar -->
  	<div class="sidebar">
@@ -22,25 +24,20 @@
  					</a>
  				</li>
  				<li class="nav-item">
- 					<a href="#" class="nav-link">
- 						<i class="nav-icon fas fa-clipboard-list"></i>
+ 					<a href="<?= base_url('teknisi/plot'); ?>" class="nav-link">
+ 						<i class="nav-icon fas fa-list"></i>
  						<p>
- 							Data Pengaduan
- 							<i class="fas fa-angle-left right"></i>
+ 							Plot Pengaduan
  						</p>
  					</a>
- 					<ul class="nav nav-treeview">
- 						<li class="nav-item">
- 							<a href="<?= base_url('teknisi/plot'); ?>" class="nav-link">
- 								<i class="far fa-circle nav-icon"></i>
- 								<p>Plot Pengaduan</p>
- 							</a>
- 							<a href="<?= base_url('teknisi/report'); ?>" class="nav-link">
- 								<i class="far fa-circle nav-icon"></i>
- 								<p>Report Pengaduan</p>
- 							</a>
- 						</li>
- 					</ul>
+ 				</li>
+ 				<li class="nav-item">
+ 					<a href="<?= base_url('teknisi/report'); ?>" class="nav-link">
+ 						<i class="nav-icon fas fa-book"></i>
+ 						<p>
+ 							Report Pengaduan
+ 						</p>
+ 					</a>
  				</li>
  			</ul>
  		</nav>

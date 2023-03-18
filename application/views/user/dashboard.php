@@ -45,20 +45,20 @@
 				</div>
 				<!-- /.col -->
 			</div>
+			<!-- /.row -->
+
 			<div class="row">
-				<div class="col-lg-12 col-sm-12 col-md-12 d-flex flex-column">
+				<div class="col-md">
 					<div class="card">
-						<div class="card-header bg-primary text-center">
-							<h5>Grafik Status Aduan</h5>
+						<div class="card-header text-center">
+							<h3>Sistem Informasi Pengaduan Mahasiswa (SIPMAS)</h3>
 						</div>
 						<div class="card-body">
-							<div id="chart-aduan"></div>
+							<p><?= $setting->tentang; ?></p>
 						</div>
 					</div>
-					<!-- /.info-box -->
 				</div>
 			</div>
-			<!-- /.row -->
 		</div>
 		<!--/. container-fluid -->
 	</section>

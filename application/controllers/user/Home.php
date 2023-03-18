@@ -28,6 +28,7 @@ class Home extends CI_Controller
 			'aduanGrafik' => $this->user->getAduanGrafik([
 				'pengaduan.idUser' => $this->dt_user->id
 			]),
+			'setting'	=> $this->user->getSetting()
 		];
 
 		$this->load->view('index', $data);

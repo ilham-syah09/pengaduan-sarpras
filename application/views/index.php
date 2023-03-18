@@ -20,18 +20,21 @@
 
     <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/toastr/toastr.min.css">
 
+    <!-- summernote -->
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/summernote/summernote-bs4.min.css">
+
     <!-- jQuery -->
     <script src="<?= base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
         <div class="toastr-success" data-flashdata="<?= $this->session->flashdata('toastr-success'); ?>"></div>
         <div class="toastr-error" data-flashdata="<?= $this->session->flashdata('toastr-error'); ?>"></div>
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-dark">
+        <nav class="main-header navbar navbar-expand navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -87,7 +90,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <strong>Copyright &copy; Pengaduan Sarpras </strong>
+            <strong>Copyright &copy; Sistem Informasi Pengaduan Mahasiswa </strong>
         </footer>
     </div>
     <!-- ./wrapper -->
@@ -112,10 +115,20 @@
 
     <script src="<?= base_url('assets/plugins/jquery.maskedinput/'); ?>jquery.maskedinput.min.js"></script>
 
+    <!-- Summernote -->
+    <script src="<?= base_url(); ?>assets/plugins/summernote/summernote-bs4.min.js"></script>
+
     <script>
         $('#example').DataTable();
 
         $('.js-masked-time').mask('99:99');
+
+        $(function() {
+            // Summernote
+            $('#summernote').summernote({
+                height: 300
+            })
+        })
     </script>
 </body>
 

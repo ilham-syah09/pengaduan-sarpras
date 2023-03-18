@@ -92,7 +92,7 @@
 			plotBorderWidth: null,
 			plotShadow: false,
 			type: 'pie',
-			backgroundColor: '#343A40',
+			backgroundColor: '#fff',
 		},
 		title: {
 			style: {

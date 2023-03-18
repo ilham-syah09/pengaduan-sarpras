@@ -49,6 +49,11 @@ class MUser extends CI_Model
 
 		return $this->db->get('pengaduan')->result();
 	}
+
+	public function getSetting()
+	{
+		return $this->db->get('setting', 1)->row();
+	}
 }
 
 /* End of file MUser.php */

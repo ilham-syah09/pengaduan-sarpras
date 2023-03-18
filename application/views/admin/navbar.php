@@ -1,9 +1,11 @@
  <!-- Main Sidebar Container -->
- <aside class="main-sidebar sidebar-dark-primary elevation-4">
+ <aside class="main-sidebar sidebar-light-primary elevation-2">
  	<!-- Brand Logo -->
- 	<a href="<?= base_url('admin'); ?>" class="brand-link">
- 		<span class="brand-text font-weight-bold">SARPRAS</span>
- 	</a>
+ 	<div class="text-center">
+ 		<a href="<?= base_url('admin'); ?>" class="brand-link">
+ 			<span class="brand-text font-weight-bold"><i class="fas fa-box"></i> SIPMAS</span>
+ 		</a>
+ 	</div>
 
  	<!-- Sidebar -->
  	<div class="sidebar">
@@ -66,6 +68,15 @@
  						<i class="nav-icon fas fa-file"></i>
  						<p>
  							Report Pengaduan
+ 						</p>
+ 					</a>
+ 				</li>
+ 				<li class="nav-header">Setting</li>
+ 				<li class="nav-item">
+ 					<a href="<?= base_url('admin/setting'); ?>" class="nav-link">
+ 						<i class="nav-icon fas fa-fire"></i>
+ 						<p>
+ 							Setting
  						</p>
  					</a>
  				</li>
