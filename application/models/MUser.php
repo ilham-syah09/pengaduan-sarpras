@@ -54,6 +54,13 @@ class MUser extends CI_Model
 	{
 		return $this->db->get('setting', 1)->row();
 	}
+
+	public function getCountAduan()
+	{
+		$this->db->where('idUser', $this->dt_user->id);
+		$this->db->where('status', 0);
+		return $this->db->get('pengaduan')->num_rows();
+	}
 }
 
 /* End of file MUser.php */

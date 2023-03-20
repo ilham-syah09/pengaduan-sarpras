@@ -21,7 +21,7 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered table-hover" id="example">
+								<table class="table table-bordered table-hover" id="examples">
 									<thead>
 										<tr>
 											<th class="text-center">#</th>
@@ -69,13 +69,13 @@
 												<td><?= ($dt->ditanggapi) ?  date('d M Y', strtotime($dt->ditanggapi)) : ''; ?></td>
 												<td>
 													<?php if ($dt->status == 0) : ?>
-														<a href="#" class="badge badge-info status_btn" data-toggle="modal" data-target="#editStatus" data-id="<?= $dt->id; ?>" data-status="<?= $dt->status; ?>">Status</a>
 														<a href="<?= base_url('admin/pengaduan/delete/' . $dt->id); ?>" onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')" class="badge badge-danger">Delete</a>
 													<?php elseif ($dt->status == 1) : ?>
 														<?php if (cekPlot($dt->id) == false) : ?>
 															<a href="#" class="badge badge-primary plot_btn" data-toggle="modal" data-target="#plotPengaduan" data-id="<?= $dt->id; ?>">Plot Pengaduan</a>
 														<?php endif; ?>
 													<?php endif; ?>
+													<a href="#" class="badge badge-warning status_btn" data-toggle="modal" data-target="#editStatus" data-id="<?= $dt->id; ?>" data-status="<?= $dt->status; ?>">Status</a>
 												</td>
 											</tr>
 										<?php endforeach; ?>

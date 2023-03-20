@@ -54,6 +54,16 @@ class MTeknisi extends CI_Model
 
 		return $this->db->get('report')->result();
 	}
+
+	public function getCountAduan($where)
+	{
+		$this->db->join('plotPengaduan', 'plotPengaduan.idPengaduan = pengaduan.id', 'left');
+
+		$this->db->where($where);
+		$this->db->where('pengaduan.status', 0);
+
+		return $this->db->get('pengaduan')->num_rows();
+	}
 }
 
 /* End of file MTeknisi.php */

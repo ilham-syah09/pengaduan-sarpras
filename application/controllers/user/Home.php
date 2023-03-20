@@ -23,6 +23,7 @@ class Home extends CI_Controller
 			'title'   => 'Dashboard User',
 			'navbar'  => 'user/navbar',
 			'page'    => 'user/dashboard',
+			'notif'  => $this->user->getCountAduan(),
 			'aduan'  => $this->user->getCountPengaduan(['idUser' => $this->dt_user->id]),
 			'report' => $this->user->getCountReport(['pengaduan.idUser' => $this->dt_user->id]),
 			'aduanGrafik' => $this->user->getAduanGrafik([

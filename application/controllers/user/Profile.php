@@ -24,6 +24,7 @@ class Profile extends CI_Controller
             'title'   => 'Profile',
             'navbar'  => 'user/navbar',
             'page'    => 'user/profile',
+            'notif'  => $this->user->getCountAduan(),
         ];
 
         $this->load->view('index', $data);

@@ -74,7 +74,7 @@
 				<!-- /.col -->
 			</div>
 			<div class="row">
-				<div class="col-lg-6 col-sm-12 col-md-12 d-flex flex-column">
+				<div class="col-lg-4 col-sm-12 col-md-12 d-flex flex-column">
 					<div class="card">
 						<div class="card-header bg-info text-center">
 							<h5>Grafik User Level</h5>
@@ -85,13 +85,24 @@
 					</div>
 					<!-- /.info-box -->
 				</div>
-				<div class="col-lg-6 col-sm-12 col-md-12 d-flex flex-column">
+				<div class="col-lg-4 col-sm-12 col-md-12 d-flex flex-column">
 					<div class="card">
 						<div class="card-header bg-primary text-center">
 							<h5>Grafik Status Aduan</h5>
 						</div>
 						<div class="card-body">
 							<div id="chart-aduan"></div>
+						</div>
+					</div>
+					<!-- /.info-box -->
+				</div>
+				<div class="col-lg-4 col-sm-12 col-md-12 d-flex flex-column">
+					<div class="card">
+						<div class="card-header bg-dark text-center">
+							<h5>Grafik Aduan Hari Ini</h5>
+						</div>
+						<div class="card-body">
+							<div id="chart-aduan-today"></div>
 						</div>
 					</div>
 					<!-- /.info-box -->
@@ -141,9 +152,6 @@
 			backgroundColor: '#fff',
 		},
 		title: {
-			style: {
-				color: "#FFF"
-			},
 			text: 'Grafik User Level'
 		},
 		accessibility: {
@@ -204,9 +212,6 @@
 			backgroundColor: '#fff',
 		},
 		title: {
-			style: {
-				color: "#FFF"
-			},
 			text: 'Grafik Status Aduan'
 		},
 		accessibility: {
@@ -229,6 +234,66 @@
 			name: 'Status Aduan',
 			colorByPoint: true,
 			data: dataAduan
+		}],
+		exporting: {
+			buttons: {
+				contextButton: {
+					enabled: false
+				}
+			}
+		}
+	});
+
+	let aduanToday = <?php echo json_encode($aduanTodayGrafik); ?>;
+	let dataAduanToday = [];
+
+	for (let i = 0; i < aduanToday.length; i++) {
+		var statusTOday;
+		if (aduanToday[i].status == 1) {
+			statusTOday = 'Selesai';
+		} else if (aduanToday[i].status == 2) {
+			statusTOday = 'Ditolak';
+		} else {
+			statusTOday = 'Belum di proses'
+		}
+
+		dataAduanToday.push({
+			name: statusTOday,
+			y: parseInt(aduanToday[i].total)
+		});
+	}
+
+	Highcharts.chart('chart-aduan-today', {
+		chart: {
+			plotBackgroundColor: null,
+			plotBorderWidth: null,
+			plotShadow: false,
+			type: 'pie',
+			backgroundColor: '#fff',
+		},
+		title: {
+			text: 'Grafik Aduan Hari Ini'
+		},
+		accessibility: {
+			point: {
+				valueSuffix: '%'
+			}
+		},
+		plotOptions: {
+			pie: {
+				allowPointSelect: true,
+				cursor: 'pointer',
+				dataLabels: {
+					enabled: true,
+					format: '<b>{point.name}</b>: {point.y} Aduan'
+				},
+				showInLegend: true
+			}
+		},
+		series: [{
+			name: 'Aduan Hari Ini',
+			colorByPoint: true,
+			data: dataAduanToday
 		}],
 		exporting: {
 			buttons: {

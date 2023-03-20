@@ -10,8 +10,12 @@ class MAdmin extends CI_Model
 		return $this->db->get('user')->result();
 	}
 
-	public function getCount($tabel)
+	public function getCount($tabel, $where = null)
 	{
+		if ($where) {
+			$this->db->where($where);
+		}
+
 		return $this->db->get($tabel)->num_rows();
 	}
 
@@ -23,10 +27,14 @@ class MAdmin extends CI_Model
 		return $this->db->get('user')->result();
 	}
 
-	public function getAduanGrafik()
+	public function getAduanGrafik($where = null)
 	{
 		$this->db->select('COUNT(pengaduan.id) as total, plotPengaduan.status as status');
 		$this->db->join('plotPengaduan', 'plotPengaduan.idPengaduan = pengaduan.id', 'left');
+
+		if ($where) {
+			$this->db->where($where);
+		}
 
 		$this->db->group_by('plotPengaduan.status');
 

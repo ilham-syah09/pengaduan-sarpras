@@ -95,9 +95,6 @@
 			backgroundColor: '#343A40',
 		},
 		title: {
-			style: {
-				color: "#FFF"
-			},
 			text: 'Grafik Status Aduan'
 		},
 		accessibility: {

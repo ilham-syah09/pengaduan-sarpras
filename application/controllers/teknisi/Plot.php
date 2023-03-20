@@ -20,13 +20,36 @@ class Plot extends CI_Controller
 	public function index()
 	{
 		$data = [
-			'title'   => 'Plot Pengaduan',
-			'navbar'  => 'teknisi/navbar',
-			'page'    => 'teknisi/plot',
-			'plot'    => $this->teknisi->getPlotPengaduan(['plotPengaduan.idUser' => $this->dt_user->id])
+			'title'  => 'Plot Pengaduan',
+			'navbar' => 'teknisi/navbar',
+			'page'   => 'teknisi/plot',
+			'notif'  => $this->teknisi->getCountAduan(['plotPengaduan.idUser' => $this->dt_user->id]),
+			'plot'   => $this->teknisi->getPlotPengaduan(['plotPengaduan.idUser' => $this->dt_user->id])
 		];
 
 		$this->load->view('index', $data);
+	}
+
+	public function status()
+	{
+		$data = [
+			'status' => $this->input->post('status')
+		];
+
+		$this->db->where('id', $this->input->post('idPlot'));
+		$update = $this->db->update('plotPengaduan', $data);
+
+		if ($update) {
+			if ($data['status'] == 2) {
+				$this->db->where('idPlot', $this->input->post('idPlot'));
+				$this->db->delete('report');
+			}
+			$this->session->set_flashdata('toastr-success', 'Data berhasil diedit');
+		} else {
+			$this->session->set_flashdata('toastr-error', 'Data gagal diedit');
+		}
+
+		redirect('teknisi/plot', 'refresh');
 	}
 
 	public function report()

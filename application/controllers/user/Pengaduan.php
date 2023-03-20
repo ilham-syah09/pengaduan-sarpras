@@ -23,6 +23,7 @@ class Pengaduan extends CI_Controller
 			'title'     => 'Pengaduan',
 			'navbar'    => 'user/navbar',
 			'page'      => 'user/pengaduan',
+			'notif'  => $this->user->getCountAduan(),
 			'kategori' => $this->user->getAllKategori(),
 			'pengaduan' => $this->user->getPengaduan([
 				'pengaduan.idUser' => $this->dt_user->id

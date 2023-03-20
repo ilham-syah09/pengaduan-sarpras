@@ -30,6 +30,9 @@ class Home extends CI_Controller
             'notif'  => $this->admin->getCountAduan(),
             'userGrafik' => $this->admin->getUserGrafik(),
             'aduanGrafik' => $this->admin->getAduanGrafik(),
+            'aduanTodayGrafik' => $this->admin->getAduanGrafik([
+                'pengaduan.tanggal' => date('Y-m-d')
+            ]),
         ];
 
         $this->load->view('index', $data);

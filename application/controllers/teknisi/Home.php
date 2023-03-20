@@ -23,6 +23,7 @@ class Home extends CI_Controller
 			'title'   => 'Dashboard Teknisi',
 			'navbar'  => 'teknisi/navbar',
 			'page'    => 'teknisi/dashboard',
+			'notif'  => $this->teknisi->getCountAduan(['plotPengaduan.idUser' => $this->dt_user->id]),
 			'aduan'  => $this->teknisi->getCountPengaduan(['plotPengaduan.idUser' => $this->dt_user->id]),
 			'report' => $this->teknisi->getCountReport(['idUser' => $this->dt_user->id]),
 			'aduanGrafik' => $this->teknisi->getAduanGrafik([

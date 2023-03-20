@@ -42,6 +42,13 @@ class pengaduan extends CI_Controller
 		$update = $this->db->update('pengaduan', $data);
 
 		if ($update) {
+			if ($data['status'] == 2) {
+				$this->db->where('idPengaduan', $this->input->post('idPengaduan'));
+				$this->db->delete('report');
+				$this->db->where('idPengaduan', $this->input->post('idPengaduan'));
+				$this->db->delete('plotPengaduan');
+			}
+
 			$this->session->set_flashdata('toastr-success', 'Data berhasil diedit');
 		} else {
 			$this->session->set_flashdata('toastr-error', 'Data gagal diedit');

@@ -20,10 +20,11 @@ class Report extends CI_Controller
 	public function index()
 	{
 		$data = [
-			'title'   => 'Report Pengaduan',
-			'navbar'  => 'teknisi/navbar',
-			'page'    => 'teknisi/report',
-			'report'    => $this->teknisi->getReportPengaduan(['report.idUser' => $this->dt_user->id])
+			'title'  => 'Report Pengaduan',
+			'navbar' => 'teknisi/navbar',
+			'page'   => 'teknisi/report',
+			'notif'  => $this->teknisi->getCountAduan(['plotPengaduan.idUser' => $this->dt_user->id]),
+			'report' => $this->teknisi->getReportPengaduan(['report.idUser' => $this->dt_user->id])
 		];
 
 		$this->load->view('index', $data);

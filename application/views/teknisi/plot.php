@@ -65,9 +65,12 @@
 														<span class="badge badge-warning">Belum Diproses</span>
 													<?php elseif ($dt->status == 1) : ?>
 														<span class="badge badge-success">Selesai</span>
+													<?php elseif ($dt->status == 2) : ?>
+														<span class="badge badge-danger">Ditolak</span>
 													<?php endif; ?>
 												</td>
 												<td>
+													<a href="#" class="badge badge-warning status_btn" data-toggle="modal" data-target="#editStatus" data-id="<?= $dt->id; ?>" data-status="<?= $dt->status; ?>">Status</a>
 													<?php if ($dt->status == 0) : ?>
 														<a href="#" class="badge badge-info report_btn" data-toggle="modal" data-target="#report" data-id="<?= $dt->id; ?>" data-idpengaduan="<?= $dt->idPengaduan; ?>">Report</a>
 													<?php endif; ?>
@@ -147,6 +150,40 @@
 	</div>
 </div>
 
+<div class="modal fade" id="editStatus" tabindex="-1" role="dialog" aria-labelledby="editStatus" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Edit Status</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form action="<?= base_url('teknisi/plot/status'); ?>" method="post">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label>Status</label>
+								<input type="hidden" name="idPlot" id="idPlotStatus">
+								<select name="status" id="status" class="form-control">
+									<option value="0">Belum Diproses</option>
+									<option value="1">Selesai</option>
+									<option value="2">Ditolak</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
 <script>
 	let report_btn = $('.report_btn');
 
@@ -157,6 +194,18 @@
 
 			$('#idPlot').val(id);
 			$('#idPengaduan').val(idPengaduan);
+		});
+	});
+
+	let status_btn = $('.status_btn');
+
+	$(status_btn).each(function(i) {
+		$(status_btn[i]).click(function() {
+			let id = $(this).data('id');
+			let status = $(this).data('status');
+
+			$('#idPlotStatus').val(id);
+			$('#status').val(status);
 		});
 	});
 </script>
