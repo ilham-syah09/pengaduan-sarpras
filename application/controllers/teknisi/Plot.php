@@ -44,6 +44,15 @@ class Plot extends CI_Controller
 				$this->db->where('idPlot', $this->input->post('idPlot'));
 				$this->db->delete('report');
 			}
+
+			$this->db->select('idPengaduan');
+			$this->db->where('id', $this->input->post('idPlot'));
+
+			$plot = $this->db->get('plotPengaduan')->row();
+
+			$this->db->where('id', $plot->idPengaduan);
+			$this->db->update('pengaduan', $data);
+
 			$this->session->set_flashdata('toastr-success', 'Data berhasil diedit');
 		} else {
 			$this->session->set_flashdata('toastr-error', 'Data gagal diedit');
@@ -109,6 +118,16 @@ class Plot extends CI_Controller
 		if ($insert) {
 			$this->db->where('id', $this->input->post('idPlot'));
 			$this->db->update('plotPengaduan', [
+				'status' => 1
+			]);
+
+			$this->db->select('idPengaduan');
+			$this->db->where('id', $this->input->post('idPlot'));
+
+			$plot = $this->db->get('plotPengaduan')->row();
+
+			$this->db->where('id', $plot->idPengaduan);
+			$this->db->update('pengaduan', [
 				'status' => 1
 			]);
 

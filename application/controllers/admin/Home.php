@@ -31,7 +31,7 @@ class Home extends CI_Controller
             'userGrafik' => $this->admin->getUserGrafik(),
             'aduanGrafik' => $this->admin->getAduanGrafik(),
             'aduanTodayGrafik' => $this->admin->getAduanGrafik([
-                'pengaduan.tanggal' => date('Y-m-d')
+                'tanggal' => date('Y-m-d')
             ]),
         ];
 

@@ -22,7 +22,7 @@
 						<span class="info-box-icon bg-danger elevation-1"><i class="fas fa-book"></i></span>
 
 						<div class="info-box-content">
-							<span class="info-box-text">Aduan</span>
+							<span class="info-box-text">Plot Aduan</span>
 							<span class="info-box-number"><?= $aduan; ?></span>
 						</div>
 						<!-- /.info-box-content -->
@@ -49,7 +49,7 @@
 				<div class="col-lg-12 col-sm-12 col-md-12 d-flex flex-column">
 					<div class="card">
 						<div class="card-header bg-primary text-center">
-							<h5>Grafik Status Aduan</h5>
+							<h5>Grafik Status Plot Aduan</h5>
 						</div>
 						<div class="card-body">
 							<div id="chart-aduan"></div>
@@ -95,7 +95,7 @@
 			backgroundColor: '#fff',
 		},
 		title: {
-			text: 'Grafik Status Aduan'
+			text: 'Grafik Status Plot Aduan'
 		},
 		accessibility: {
 			point: {
@@ -108,13 +108,13 @@
 				cursor: 'pointer',
 				dataLabels: {
 					enabled: true,
-					format: '<b>{point.name}</b>: {point.y} Aduan'
+					format: '<b>{point.name}</b>: {point.y} Plot Aduan'
 				},
 				showInLegend: true
 			}
 		},
 		series: [{
-			name: 'Status Aduan',
+			name: 'Status Plot Aduan',
 			colorByPoint: true,
 			data: dataAduan
 		}],

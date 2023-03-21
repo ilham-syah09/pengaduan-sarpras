@@ -29,14 +29,13 @@ class MAdmin extends CI_Model
 
 	public function getAduanGrafik($where = null)
 	{
-		$this->db->select('COUNT(pengaduan.id) as total, plotPengaduan.status as status');
-		$this->db->join('plotPengaduan', 'plotPengaduan.idPengaduan = pengaduan.id', 'left');
+		$this->db->select('COUNT(id) as total, status');
 
 		if ($where) {
 			$this->db->where($where);
 		}
 
-		$this->db->group_by('plotPengaduan.status');
+		$this->db->group_by('status');
 
 		return $this->db->get('pengaduan')->result();
 	}
@@ -72,7 +71,7 @@ class MAdmin extends CI_Model
 		$this->db->select('plotPengaduan.*, pengaduan.judulAduan, pengaduan.idUser as userId');
 		$this->db->join('pengaduan', 'pengaduan.id = plotPengaduan.idPengaduan', 'inner');
 
-		$this->db->order_by('plotPengaduan.status', 'asc');
+		$this->db->order_by('plotPengaduan.id', 'asc');
 
 		return $this->db->get('plotPengaduan')->result();
 	}

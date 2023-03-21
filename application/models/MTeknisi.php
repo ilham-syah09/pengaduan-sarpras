@@ -38,7 +38,7 @@ class MTeknisi extends CI_Model
 
 		$this->db->where($where);
 
-		$this->db->order_by('plotPengaduan.status', 'asc');
+		$this->db->order_by('plotPengaduan.id', 'desc');
 
 		return $this->db->get('plotPengaduan')->result();
 	}

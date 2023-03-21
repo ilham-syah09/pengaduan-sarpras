@@ -194,7 +194,7 @@
 		} else if (aduan[i].status == 2) {
 			status = 'Ditolak';
 		} else {
-			status = 'Belum di proses'
+			status = 'Menunggu'
 		}
 
 		dataAduan.push({
@@ -254,7 +254,7 @@
 		} else if (aduanToday[i].status == 2) {
 			statusTOday = 'Ditolak';
 		} else {
-			statusTOday = 'Belum di proses'
+			statusTOday = 'Menunggu'
 		}
 
 		dataAduanToday.push({

@@ -55,6 +55,8 @@
 														<span class="badge badge-warning">Belum Diproses</span>
 													<?php elseif ($dt->status == 1) : ?>
 														<span class="badge badge-success">Selesai</span>
+													<?php elseif ($dt->status == 2) : ?>
+														<span class="badge badge-danger">Ditolak</span>
 													<?php endif; ?>
 												</td>
 												<td>
