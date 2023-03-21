@@ -49,7 +49,7 @@
 				<div class="col-lg-12 col-sm-12 col-md-12 d-flex flex-column">
 					<div class="card">
 						<div class="card-header bg-primary text-center">
-							<h5>Grafik Status Plot Aduan</h5>
+							<h5>Grafik Status Aduan</h5>
 						</div>
 						<div class="card-body">
 							<div id="chart-aduan"></div>
@@ -76,8 +76,10 @@
 		var status;
 		if (aduan[i].status == 1) {
 			status = 'Selesai';
+		} else if (aduan[i].status == 2) {
+			status = 'Ditolak';
 		} else {
-			status = 'Belum Diproses';
+			status = 'Menunggu';
 		}
 
 		dataAduan.push({
@@ -95,7 +97,7 @@
 			backgroundColor: '#fff',
 		},
 		title: {
-			text: 'Grafik Status Plot Aduan'
+			text: 'Grafik Status Aduan'
 		},
 		accessibility: {
 			point: {
@@ -108,13 +110,13 @@
 				cursor: 'pointer',
 				dataLabels: {
 					enabled: true,
-					format: '<b>{point.name}</b>: {point.y} Plot Aduan'
+					format: '<b>{point.name}</b>: {point.y} Aduan'
 				},
 				showInLegend: true
 			}
 		},
 		series: [{
-			name: 'Status Plot Aduan',
+			name: 'Status Aduan',
 			colorByPoint: true,
 			data: dataAduan
 		}],

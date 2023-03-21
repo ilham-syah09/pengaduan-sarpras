@@ -42,7 +42,7 @@ class pengaduan extends CI_Controller
 		$update = $this->db->update('pengaduan', $data);
 
 		if ($update) {
-			if ($data['status'] == 2) {
+			if ($data['status'] != 1) {
 				$this->db->where('idPengaduan', $this->input->post('idPengaduan'));
 				$this->db->delete('report');
 				$this->db->where('idPengaduan', $this->input->post('idPengaduan'));

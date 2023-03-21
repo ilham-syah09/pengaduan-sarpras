@@ -21,8 +21,8 @@ class MTeknisi extends CI_Model
 
 	public function getAduanGrafik($where)
 	{
-		$this->db->select('COUNT(pengaduan.id) as total, plotPengaduan.status as status');
-		$this->db->join('plotPengaduan', 'plotPengaduan.idPengaduan = pengaduan.id', 'left');
+		$this->db->select('COUNT(pengaduan.id) as total, pengaduan.status as status');
+		$this->db->join('plotPengaduan', 'plotPengaduan.idPengaduan = pengaduan.id', 'inner');
 
 		$this->db->where($where);
 
