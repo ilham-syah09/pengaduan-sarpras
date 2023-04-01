@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/bootstrap-datepicker/css/datepicker3.css">
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
@@ -62,7 +64,7 @@
 													<?php endif; ?>
 												</td>
 												<td>
-													<a href="#" class="badge badge-info report_btn" data-toggle="modal" data-target="#report" data-id="<?= $dt->id; ?>" data-solusi="<?= $dt->solusi; ?>" data-rincian="<?= $dt->rincian; ?>" data-tanggal_mulai="<?= $dt->tanggal_mulai; ?>" data-jam_mulai="<?= $dt->jam_mulai; ?>" data-tanggal_selesai="<?= $dt->tanggal_selesai; ?>" data-jam_selesai="<?= $dt->jam_selesai; ?>">Edit</a>
+													<a href="#" class="badge badge-info report_btn" data-toggle="modal" data-target="#report" data-id="<?= $dt->id; ?>" data-solusi="<?= $dt->solusi; ?>" data-rincian="<?= $dt->rincian; ?>" data-tanggal_mulai="<?= $dt->tanggal_mulai; ?>" data-jam_mulai="<?= $dt->jam_mulai; ?>" data-tanggal_selesai="<?= $dt->tanggal_selesai; ?>" data-jam_selesai="<?= $dt->jam_selesai; ?>" data-tanggaladuan="<?= $dt->tanggalAduan; ?>">Edit</a>
 													<a href="<?= base_url('teknisi/report/delete/' . $dt->id); ?>" onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')" class="badge badge-danger">Delete</a>
 												</td>
 											</tr>
@@ -113,7 +115,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Tanggal Mulai</label>
-								<input type="date" name="tanggal_mulai" class="form-control" id="tanggal_mulai">
+								<input type="text" name="tanggal_mulai" class="form-control datepicker" id="tanggal_mulai" autocomplete="off" placeholder="yyyy/mm/dd">
 							</div>
 							<div class="form-group">
 								<label>Jam Mulai</label>
@@ -121,7 +123,7 @@
 							</div>
 							<div class="form-group">
 								<label>Tanggal Selesai</label>
-								<input type="date" name="tanggal_selesai" class="form-control" id="tanggal_selesai">
+								<input type="text" name="tanggal_selesai" class="form-control datepicker" id="tanggal_selesai" autocomplete="off" placeholder="yyyy/mm/dd">
 							</div>
 							<div class="form-group">
 								<label>Jam Selesai</label>
@@ -139,6 +141,8 @@
 	</div>
 </div>
 
+<script src="<?php echo base_url() ?>assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
 <script>
 	let report_btn = $('.report_btn');
 
@@ -153,6 +157,8 @@
 			let tanggal_selesai = $(this).data('tanggal_selesai');
 			let jam_selesai = $(this).data('jam_selesai');
 
+			let tanggalAduan = $(this).data('tanggaladuan');
+
 			$('#idReport').val(id);
 			$('#idPengaduan').val(idPengaduan);
 			$('#solusi').val(solusi);
@@ -161,6 +167,20 @@
 			$('#jam_mulai').val(jam_mulai);
 			$('#tanggal_selesai').val(tanggal_selesai);
 			$('#jam_selesai').val(jam_selesai);
+
+			$('#tanggal_mulai').datepicker('setStartDate', new Date(tanggalAduan));
 		});
+	});
+
+	$('.datepicker').datepicker({
+		format: 'yyyy-mm-dd'
+	});
+
+	$("#tanggal_mulai").datepicker({
+		todayBtn: 1,
+		autoclose: true,
+	}).on('changeDate', function(selected) {
+		var minDate = new Date(selected.date.valueOf());
+		$('#tanggal_selesai').datepicker('setStartDate', minDate);
 	});
 </script>

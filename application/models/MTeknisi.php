@@ -33,7 +33,7 @@ class MTeknisi extends CI_Model
 
 	public function getPlotPengaduan($where)
 	{
-		$this->db->select('plotPengaduan.*, pengaduan.judulAduan, pengaduan.kendala, pengaduan.gambar');
+		$this->db->select('plotPengaduan.*, pengaduan.judulAduan, pengaduan.kendala, pengaduan.gambar, pengaduan.tanggal as tanggalAduan');
 		$this->db->join('pengaduan', 'pengaduan.id = plotPengaduan.idPengaduan', 'inner');
 
 		$this->db->where($where);
@@ -45,7 +45,7 @@ class MTeknisi extends CI_Model
 
 	public function getReportPengaduan($where)
 	{
-		$this->db->select('pengaduan.judulAduan, pengaduan.kendala, report.*');
+		$this->db->select('pengaduan.judulAduan, pengaduan.kendala, pengaduan.tanggal as tanggalAduan, report.*');
 		$this->db->join('pengaduan', 'pengaduan.id = report.idPengaduan', 'inner');
 
 		$this->db->where($where);

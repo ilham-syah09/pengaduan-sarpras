@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/bootstrap-datepicker/css/datepicker3.css">
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
@@ -72,7 +74,7 @@
 												<td>
 													<a href="#" class="badge badge-warning status_btn" data-toggle="modal" data-target="#editStatus" data-id="<?= $dt->id; ?>" data-status="<?= $dt->status; ?>">Status</a>
 													<?php if ($dt->status == 0) : ?>
-														<a href="#" class="badge badge-info report_btn" data-toggle="modal" data-target="#report" data-id="<?= $dt->id; ?>" data-idpengaduan="<?= $dt->idPengaduan; ?>">Report</a>
+														<a href="#" class="badge badge-info report_btn" data-toggle="modal" data-target="#report" data-id="<?= $dt->id; ?>" data-idpengaduan="<?= $dt->idPengaduan; ?>" data-tanggaladuan="<?= $dt->tanggalAduan; ?>">Report</a>
 													<?php endif; ?>
 												</td>
 											</tr>
@@ -124,7 +126,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Tanggal Mulai</label>
-								<input type="date" name="tanggal_mulai" class="form-control">
+								<input type="text" name="tanggal_mulai" class="form-control datepicker" id="tanggal_mulai" autocomplete="off" placeholder="yyyy/mm/dd">
 							</div>
 							<div class="form-group">
 								<label>Jam Mulai</label>
@@ -132,9 +134,9 @@
 							</div>
 							<div class="form-group">
 								<label>Tanggal Selesai</label>
-								<input type="date" name="tanggal_selesai" class="form-control">
+								<input type="text" name="tanggal_selesai" class="form-control datepicker" id="tanggal_selesai" autocomplete="off" placeholder="yyyy/mm/dd">
 							</div>
-							<div class="form-group">
+							<div class=" form-group">
 								<label>Jam Selesai</label>
 								<input type="text" name="jam_selesai" class="form-control js-masked-time" placeholder="__:__">
 							</div>
@@ -184,6 +186,8 @@
 	</div>
 </div>
 
+<script src="<?php echo base_url() ?>assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
 <script>
 	let report_btn = $('.report_btn');
 
@@ -191,9 +195,12 @@
 		$(report_btn[i]).click(function() {
 			let id = $(this).data('id');
 			let idPengaduan = $(this).data('idpengaduan');
+			let tanggalAduan = $(this).data('tanggaladuan');
 
 			$('#idPlot').val(id);
 			$('#idPengaduan').val(idPengaduan);
+
+			$('#tanggal_mulai').datepicker('setStartDate', new Date(tanggalAduan));
 		});
 	});
 
@@ -207,5 +214,17 @@
 			$('#idPlotStatus').val(id);
 			$('#status').val(status);
 		});
+	});
+
+	$('.datepicker').datepicker({
+		format: 'yyyy-mm-dd'
+	});
+
+	$("#tanggal_mulai").datepicker({
+		todayBtn: 1,
+		autoclose: true,
+	}).on('changeDate', function(selected) {
+		var minDate = new Date(selected.date.valueOf());
+		$('#tanggal_selesai').datepicker('setStartDate', minDate);
 	});
 </script>
