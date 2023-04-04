@@ -45,7 +45,7 @@
 				</div>
 				<!-- /.col -->
 			</div>
-			<div class="row">
+			<!-- <div class="row">
 				<div class="col-lg-12 col-sm-12 col-md-12 d-flex flex-column">
 					<div class="card">
 						<div class="card-header bg-primary text-center">
@@ -55,9 +55,8 @@
 							<div id="chart-aduan"></div>
 						</div>
 					</div>
-					<!-- /.info-box -->
 				</div>
-			</div>
+			</div> -->
 			<!-- /.row -->
 		</div>
 		<!--/. container-fluid -->

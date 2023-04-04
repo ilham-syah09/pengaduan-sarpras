@@ -58,7 +58,7 @@
 
                                         <!-- tab update foto -->
                                         <div class="tab-pane text-left fade show active" id="vert-tabs-home" role="tabpanel" aria-labelledby="vert-tabs-home-tab">
-                                            <form action="<?= base_url('user/profile/updateProfile'); ?>" method="post" enctype="multipart/form-data">
+                                            <form action="<?= base_url('user/profile/updateProfile'); ?>" method="post" enctype="multipart/form-data" id="form-avatar">
                                                 <div class="form-group">
                                                     <label>Foto</label>
                                                     <input type="file" name="foto" id="foto" class="form-control">
@@ -71,15 +71,15 @@
                                         <!-- tab change password -->
                                         <div class="tab-pane fade" id="vert-tabs-profile" role="tabpanel" aria-labelledby="vert-tabs-profile-tab">
                                             <?php if (password_verify('user123', $this->dt_user->password)) : ?>
-                                                <form action="<?= base_url('user/profile/changePassword'); ?>" method="post">
+                                                <form action="<?= base_url('user/profile/changePassword'); ?>" method="post" id="form-passwordold">
 
                                                     <div class="form-group">
                                                         <label>Password</label>
-                                                        <input type="password" class="form-control" name="password">
+                                                        <input type="password" class="form-control" name="password" id="password">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Retype Password</label>
-                                                        <input type="password" class="form-control" name="retype_password">
+                                                        <input type="password" class="form-control" name="retype_password" id="retype_password">
                                                     </div>
 
                                                     <div class="d-flex justify-items-end">
@@ -87,19 +87,19 @@
                                                     </div>
                                                 </form>
                                             <?php else : ?>
-                                                <form action="<?= base_url('user/profile/changePassword'); ?>" method="post">
+                                                <form action="<?= base_url('user/profile/changePassword'); ?>" method="post" id="form-newpassword">
 
                                                     <div class="form-group">
                                                         <label>Current Password</label>
-                                                        <input type="password" class="form-control" name="current_password">
+                                                        <input type="password" class="form-control" name="current_password" id="current_password">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Password</label>
-                                                        <input type="password" class="form-control" name="password">
+                                                        <input type="password" class="form-control" name="password" id="password">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Retype Password</label>
-                                                        <input type="password" class="form-control" name="retype_password">
+                                                        <input type="password" class="form-control" name="retype_password" id="retype_password">
                                                     </div>
 
 
@@ -123,3 +123,87 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script>
+    $(document).ready(function() {
+        $("#form-passwordold").validate({
+            rules: {
+                password: {
+                    required: true,
+                    minlength: 6
+                },
+                retype_password: {
+                    required: true,
+                    equalTo: '#password'
+                },
+            },
+            messages: {
+                password: {
+                    required: "Password tidak boleh kosong!",
+                    minlength: "Password minimal 6 karakter!",
+                },
+                retype_password: {
+                    required: "Retype password tidak boleh kosong!",
+                    equalTo: "Password tidak sama!"
+                },
+            },
+            errorPlacement: function(label, element) {
+                label.addClass('arrow text-sm text-danger');
+                label.insertAfter(element);
+            },
+            wrapper: 'span'
+        });
+
+        $("#form-newpassword").validate({
+            rules: {
+                current_password: {
+                    required: true,
+                },
+                password: {
+                    required: true,
+                    minlength: 6
+                },
+                retype_password: {
+                    required: true,
+                    equalTo: '#password'
+                },
+            },
+            messages: {
+                current_password: {
+                    required: "Current Password tidak boleh kosong!",
+                },
+                password: {
+                    required: "Password tidak boleh kosong!",
+                    minlength: "Password minimal 6 karakter!",
+                },
+                retype_password: {
+                    required: "Retype password tidak boleh kosong!",
+                    equalTo: "Password tidak sama!"
+                },
+            },
+            errorPlacement: function(label, element) {
+                label.addClass('arrow text-sm text-danger');
+                label.insertAfter(element);
+            },
+            wrapper: 'span'
+        });
+
+        $("#form-avatar").validate({
+            rules: {
+                foto: {
+                    required: true,
+                },
+            },
+            messages: {
+                foto: {
+                    required: "Foto tidak boleh kosong!",
+                },
+            },
+            errorPlacement: function(label, element) {
+                label.addClass('arrow text-sm text-danger');
+                label.insertAfter(element);
+            },
+            wrapper: 'span'
+        });
+    });
+</script>

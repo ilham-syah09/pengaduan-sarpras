@@ -22,29 +22,25 @@
     <div class="toastr-success" data-flashdata="<?= $this->session->flashdata('toastr-success'); ?>"></div>
     <div class="toastr-error" data-flashdata="<?= $this->session->flashdata('toastr-error'); ?>"></div>
 
-    <div class="login-box">
+    <div class="login-box mb-5">
         <!-- /.login-logo -->
+        <div class="text-center">
+            <img src="<?= base_url('assets/image/phb.png'); ?>" alt="logo phb" class="img-fluid mb-3" width="170">
+        </div>
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
+
                 <h4>Form Login</h4>
             </div>
             <div class="card-body">
-                <form action="<?= base_url('auth/proses'); ?>" method="post">
-                    <div class="input-group mb-3">
-                        <input type="username" class="form-control" placeholder="username" name="username">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
+                <form action="<?= base_url('auth/proses'); ?>" method="post" id="form-login">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="username" class="form-control" name="username" id="username">
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password" name="password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password" id="password">
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -62,6 +58,9 @@
 
     <!-- jQuery -->
     <script src="<?= base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="<?= base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
@@ -69,6 +68,36 @@
 
     <script src="<?= base_url(); ?>assets/plugins/toastr/toastr.min.js"></script>
     <script src="<?= base_url(); ?>assets/plugins/toastr/customScript.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $("#form-login").validate({
+                rules: {
+                    username: {
+                        required: true
+                    },
+                    password: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    username: {
+                        required: "harap isi username"
+                    },
+                    password: {
+                        required: "harap isi password"
+                    }
+                },
+                errorPlacement: function(label, element) {
+                    label.addClass('arrow text-sm text-danger');
+                    label.insertAfter(element);
+                },
+                wrapper: 'span'
+            });
+        });
+    </script>
+
 </body>
 
 </html>

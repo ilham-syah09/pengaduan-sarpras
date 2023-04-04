@@ -107,17 +107,17 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="<?= base_url('user/pengaduan/add'); ?>" method="post" enctype="multipart/form-data">
+			<form action="<?= base_url('user/pengaduan/add'); ?>" method="post" enctype="multipart/form-data" id="form-add">
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
 								<label>Judul Aduan</label>
-								<input type="text" class="form-control" name="judulAduan">
+								<input type="text" class="form-control" name="judulAduan" id="judulAduan">
 							</div>
 							<div class="form-group">
 								<label>Kategori</label>
-								<select name="idKategori" class="form-control">
+								<select name="idKategori" class="form-control" id="idKategori">
 									<option value="">-- Pilih Kategori --</option>
 									<?php foreach ($kategori as $dt) : ?>
 										<option value="<?= $dt->id; ?>"><?= $dt->namaKategori; ?></option>
@@ -126,7 +126,7 @@
 							</div>
 							<div class="form-group">
 								<label>Kendala</label>
-								<input type="text" class="form-control" name="kendala">
+								<input type="text" class="form-control" name="kendala" id="kendala">
 							</div>
 							<div class="form-group">
 								<label>Gambar <sup class="text-warning">(opsional)</sup></label>
@@ -234,6 +234,38 @@
 </div>
 
 <script>
+	$(document).ready(function() {
+		$("#form-add").validate({
+			rules: {
+				judulAduan: {
+					required: true
+				},
+				idKategori: {
+					required: true,
+				},
+				kendala: {
+					required: true,
+				}
+			},
+			messages: {
+				judulAduan: {
+					required: "judul aduan tidak boleh kosong!"
+				},
+				idKategori: {
+					required: "kategori tidak boleh kosong!"
+				},
+				kendala: {
+					required: "kendala tidak boleh kosong!"
+				}
+			},
+			errorPlacement: function(label, element) {
+				label.addClass('arrow text-sm text-danger');
+				label.insertAfter(element);
+			},
+			wrapper: 'span'
+		});
+	});
+
 	let edit_btn = $('.edit_btn');
 
 	$(edit_btn).each(function(i) {

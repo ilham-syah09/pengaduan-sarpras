@@ -24,7 +24,7 @@
  					</a>
  				</li>
  				<li class="nav-item">
- 					<a href="<?= base_url('user/pengaduan'); ?>" class="nav-link">
+ 					<a href="<?= base_url('user/pengaduan'); ?>" class="nav-link <?= ($this->uri->segment(2) === 'pengaduan' ? 'active' : '') ?>">
  						<i class="nav-icon fas fa-book"></i>
  						<p>
  							Data Pengaduan
@@ -32,7 +32,7 @@
  					</a>
  				</li>
  				<li class="nav-item">
- 					<a href="<?= base_url('user/profile'); ?>" class="nav-link">
+ 					<a href="<?= base_url('user/profile'); ?>" class="nav-link <?= ($this->uri->segment(2) === 'profile' ? 'active' : '') ?>">
  						<i class="nav-icon fas fa-user"></i>
  						<p>
  							Profile
