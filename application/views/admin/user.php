@@ -54,7 +54,10 @@
 												</td>
 												<td>
 													<a href="#" class="badge badge-warning edit_btn" data-toggle="modal" data-target="#editUser" data-id="<?= $dt->id; ?>" data-nama="<?= $dt->nama; ?>" data-level="<?= $dt->level; ?>" data-username="<?= $dt->username; ?>">Edit</a>
+
 													<a href="<?= base_url('admin/user/delete/' . $dt->id); ?>" onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')" class="badge badge-danger">Delete</a>
+
+													<a href="<?= base_url('admin/user/reset/' . $dt->id); ?>" class="badge badge-dark">reset password</a>
 												</td>
 											</tr>
 										<?php endforeach; ?>
@@ -84,21 +87,21 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="<?= base_url('admin/user/add'); ?>" method="post">
+			<form action="<?= base_url('admin/user/add'); ?>" method="post" id="form_adduser">
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label>Nama</label>
-								<input type="text" class="form-control" name="nama">
+								<label for="namauser">Nama</label>
+								<input type="text" class="form-control" name="nama" required>
 							</div>
 							<div class="form-group">
 								<label>Username</label>
-								<input type="text" class="form-control" name="username">
+								<input type="text" class="form-control" name="username" required>
 							</div>
 							<div class="form-group">
 								<label>Level</label>
-								<select name="level" class="form-control">
+								<select name="level" class="form-control" required>
 									<option value="">-- Pilih Level --</option>
 									<option value="1">Admin</option>
 									<option value="2">Teknisi</option>
@@ -164,6 +167,16 @@
 </div>
 
 <script>
+	$(document).ready(function() {
+		$("#form_adduser").validate({
+			errorPlacement: function(label, element) {
+				label.addClass('arrow text-sm text-danger');
+				label.insertAfter(element);
+			},
+			wrapper: 'span'
+		});
+	})
+
 	let edit_btn = $('.edit_btn');
 
 	$(edit_btn).each(function(i) {

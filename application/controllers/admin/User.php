@@ -33,10 +33,11 @@ class User extends CI_Controller
 	public function add()
 	{
 		$data = [
-			'nama'     => $this->input->post('nama'),
-			'username' => $this->input->post('username'),
-			'password' => password_hash('user123', PASSWORD_BCRYPT, ['const' => 14]),
-			'level'    => $this->input->post('level')
+			'nama'		=> $this->input->post('nama'),
+			'username'	=> $this->input->post('username'),
+			'password'	=> password_hash('user123', PASSWORD_BCRYPT, ['const' => 14]),
+			'foto'		=> 'default.png',
+			'level'    	=> $this->input->post('level')
 		];
 
 		$insert = $this->db->insert('user', $data);
@@ -89,6 +90,18 @@ class User extends CI_Controller
 		}
 
 		redirect('admin/user', 'refresh');
+	}
+
+	public function reset($id)
+	{
+		$data = [
+			'password'      => password_hash('user123', PASSWORD_BCRYPT)
+		];
+
+		$this->db->where('id', $id);
+		$this->db->update('user', $data);
+		$this->session->set_flashdata('toastr-success', 'Password reset successfuly!');
+		redirect('admin/user');
 	}
 }
 

@@ -104,7 +104,7 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="<?= base_url('teknisi/plot/report'); ?>" method="post" enctype="multipart/form-data">
+			<form action="<?= base_url('teknisi/plot/report'); ?>" method="post" enctype="multipart/form-data" id="form-plotTeknisi">
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-6">
@@ -112,33 +112,33 @@
 							<input type="hidden" name="idPengaduan" id="idPengaduan">
 							<div class="form-group">
 								<label>Solusi</label>
-								<input type="text" name="solusi" class="form-control">
+								<input type="text" name="solusi" class="form-control" required>
 							</div>
 							<div class="form-group">
 								<label>Rincian Pekerjaan</label>
-								<textarea name="rincian" class="form-control" cols="30" rows="8"></textarea>
+								<textarea name="rincian" class="form-control" cols="30" rows="8" required></textarea>
 							</div>
 							<div class="form-group">
 								<label>Gambar</label>
-								<input type="file" name="gambar" class="form-control" accept=".jpeg, .jpg, .png">
+								<input type="file" name="gambar" class="form-control" accept=".jpeg, .jpg, .png" required>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Tanggal Mulai</label>
-								<input type="text" name="tanggal_mulai" class="form-control datepicker" id="tanggal_mulai" autocomplete="off" placeholder="yyyy/mm/dd">
+								<input type="text" name="tanggal_mulai" class="form-control datepicker" id="tanggal_mulai" autocomplete="off" placeholder="yyyy/mm/dd" required>
 							</div>
 							<div class="form-group">
 								<label>Jam Mulai</label>
-								<input type="text" name="jam_mulai" class="form-control js-masked-time" placeholder="__:__">
+								<input type="text" name="jam_mulai" class="form-control js-masked-time" placeholder="__:__" required>
 							</div>
 							<div class="form-group">
 								<label>Tanggal Selesai</label>
-								<input type="text" name="tanggal_selesai" class="form-control datepicker" id="tanggal_selesai" autocomplete="off" placeholder="yyyy/mm/dd">
+								<input type="text" name="tanggal_selesai" class="form-control datepicker" id="tanggal_selesai" autocomplete="off" placeholder="yyyy/mm/dd" required>
 							</div>
 							<div class=" form-group">
 								<label>Jam Selesai</label>
-								<input type="text" name="jam_selesai" class="form-control js-masked-time" placeholder="__:__">
+								<input type="text" name="jam_selesai" class="form-control js-masked-time" placeholder="__:__" required>
 							</div>
 						</div>
 					</div>
@@ -189,6 +189,16 @@
 <script src="<?php echo base_url() ?>assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
 <script>
+	$(document).ready(function() {
+		$("#form-plotTeknisi").validate({
+			errorPlacement: function(label, element) {
+				label.addClass('arrow text-sm text-danger');
+				label.insertAfter(element);
+			},
+			wrapper: 'span'
+		});
+	})
+
 	let report_btn = $('.report_btn');
 
 	$(report_btn).each(function(i) {

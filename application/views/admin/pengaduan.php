@@ -139,14 +139,14 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="<?= base_url('admin/pengaduan/plot'); ?>" method="post">
+			<form action="<?= base_url('admin/pengaduan/plot'); ?>" method="post" id="form-pengaduanplot">
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
 								<label>Teknisi</label>
 								<input type="hidden" name="idPengaduan" id="idPengaduanPlot">
-								<select name="idUser" class="form-control">
+								<select name="idUser" class="form-control" required>
 									<option value="">-- Pilih Teknisi --</option>
 									<?php foreach ($teknisi as $user) : ?>
 										<option value="<?= $user->id; ?>"><?= $user->nama; ?></option>
@@ -155,7 +155,7 @@
 							</div>
 							<div class="form-group">
 								<label>Urgensi</label>
-								<select name="urgensi" class="form-control">
+								<select name="urgensi" class="form-control" required>
 									<option value="">-- Pilih Urgensi --</option>
 									<option value="Low">Low</option>
 									<option value="Middle">Middle</option>
@@ -175,6 +175,16 @@
 </div>
 
 <script>
+	$(document).ready(function() {
+		$("#form-pengaduanplot").validate({
+			errorPlacement: function(label, element) {
+				label.addClass('arrow text-sm text-danger');
+				label.insertAfter(element);
+			},
+			wrapper: 'span'
+		});
+	})
+
 	let status_btn = $('.status_btn');
 
 	$(status_btn).each(function(i) {

@@ -70,13 +70,13 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="<?= base_url('admin/kategori/add'); ?>" method="post">
+			<form action="<?= base_url('admin/kategori/add'); ?>" method="post" id="form-addkategori">
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
 								<label>Nama Kategori</label>
-								<input type="text" class="form-control" name="namaKategori">
+								<input type="text" class="form-control" name="namaKategori" required>
 							</div>
 						</div>
 					</div>
@@ -122,6 +122,16 @@
 </div>
 
 <script>
+	$(document).ready(function() {
+		$("#form-addkategori").validate({
+			errorPlacement: function(label, element) {
+				label.addClass('arrow text-sm text-danger');
+				label.insertAfter(element);
+			},
+			wrapper: 'span'
+		});
+	})
+
 	let edit_btn = $('.edit_btn');
 
 	$(edit_btn).each(function(i) {

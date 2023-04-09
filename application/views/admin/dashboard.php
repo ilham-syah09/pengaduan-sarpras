@@ -120,9 +120,6 @@
 <script src="<?= base_url(); ?>assets/plugins/highcharts/exporting.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/highcharts/export-data.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/highcharts/accessibility.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 
 <script>
 	let user = <?php echo json_encode($userGrafik); ?>;

@@ -92,14 +92,14 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="<?= base_url('admin/plot/edit'); ?>" method="post">
+			<form action="<?= base_url('admin/plot/edit'); ?>" method="post" id="form-plotpengaduan">
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
 								<label>Teknisi</label>
 								<input type="hidden" name="idPlot" id="idPlot">
-								<select name="idUser" class="form-control" id="idUser">
+								<select name="idUser" class="form-control" id="idUser" required>
 									<option value="">-- Pilih Teknisi --</option>
 									<?php foreach ($teknisi as $user) : ?>
 										<option value="<?= $user->id; ?>"><?= $user->nama; ?></option>
@@ -108,7 +108,7 @@
 							</div>
 							<div class="form-group">
 								<label>Urgensi</label>
-								<select name="urgensi" class="form-control" id="urgensi">
+								<select name="urgensi" class="form-control" id="urgensi" required>
 									<option value="">-- Pilih Urgensi --</option>
 									<option value="Low">Low</option>
 									<option value="Middle">Middle</option>
@@ -128,6 +128,16 @@
 </div>
 
 <script>
+	$(document).ready(function() {
+		$("#form-plotpengaduan").validate({
+			errorPlacement: function(label, element) {
+				label.addClass('arrow text-sm text-danger');
+				label.insertAfter(element);
+			},
+			wrapper: 'span'
+		});
+	})
+
 	let edit_btn = $('.edit_btn');
 
 	$(edit_btn).each(function(i) {

@@ -24,7 +24,7 @@
  					</a>
  				</li>
  				<li class="nav-item">
- 					<a href="<?= base_url('teknisi/plot'); ?>" class="nav-link">
+ 					<a href="<?= base_url('teknisi/plot'); ?>" class="nav-link <?= ($this->uri->segment(2) === 'plot' ? 'active' : ''); ?>">
  						<i class="nav-icon fas fa-list"></i>
  						<p>
  							Plot Pengaduan
@@ -32,7 +32,7 @@
  					</a>
  				</li>
  				<li class="nav-item">
- 					<a href="<?= base_url('teknisi/report'); ?>" class="nav-link">
+ 					<a href="<?= base_url('teknisi/report'); ?>" class="nav-link <?= ($this->uri->segment(2) === 'report' ? 'active' : ''); ?>">
  						<i class="nav-icon fas fa-book"></i>
  						<p>
  							Report Pengaduan

@@ -48,7 +48,7 @@
  				</li>
  				<li class="nav-header">Data Pengaduan</li>
  				<li class="nav-item">
- 					<a href="<?= base_url('admin/pengaduan'); ?>" class="nav-link">
+ 					<a href="<?= base_url('admin/pengaduan'); ?>" class="nav-link <?= ($this->uri->segment(2) === 'pengaduan' ? 'active' : ''); ?>">
  						<i class="nav-icon fas fa-book"></i>
  						<p>
  							Pengaduan
@@ -56,7 +56,7 @@
  					</a>
  				</li>
  				<li class="nav-item">
- 					<a href="<?= base_url('admin/plot'); ?>" class="nav-link">
+ 					<a href="<?= base_url('admin/plot'); ?>" class="nav-link <?= ($this->uri->segment(2) === 'plot' ? 'active' : ''); ?>">
  						<i class="nav-icon fas fa-user-alt"></i>
  						<p>
  							Plot Pengaduan
@@ -64,7 +64,7 @@
  					</a>
  				</li>
  				<li class="nav-item">
- 					<a href="<?= base_url('admin/report'); ?>" class="nav-link">
+ 					<a href="<?= base_url('admin/report'); ?>" class="nav-link <?= ($this->uri->segment(2) === 'report' ? 'active' : ''); ?>">
  						<i class="nav-icon fas fa-file"></i>
  						<p>
  							Report Pengaduan
@@ -73,7 +73,7 @@
  				</li>
  				<li class="nav-header">Setting</li>
  				<li class="nav-item">
- 					<a href="<?= base_url('admin/setting'); ?>" class="nav-link">
+ 					<a href="<?= base_url('admin/setting'); ?>" class="nav-link <?= ($this->uri->segment(2) === 'setting' ? 'active' : ''); ?>">
  						<i class="nav-icon fas fa-fire"></i>
  						<p>
  							Setting
