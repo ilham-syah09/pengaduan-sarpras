@@ -47,20 +47,15 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <?php if (!$notif) : ?>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                                <a href="#" class="dropdown-item">
-                                    <i class="fas fa-envelope mr-2"></i>tidak ada pengaduan
-                                </a>
+                        <?php if ($this->session->userdata('log_admin')) : ?>
+
+                            <div class="notif">
+
                             </div>
-                        <?php else : ?>
-                            <span class="badge badge-warning navbar-badge"><?= $notif; ?></span>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                                <a href="<?= base_url('admin/pengaduan'); ?>" class="dropdown-item">
-                                    <i class="fas fa-envelope mr-2"></i> <?= $notif; ?> pengaduan baru
-                                </a>
-                            </div>
+
+                            <i class="far fa-bell"></i>
+                            <span class="badge badge-warning" id="notifikasi"></span>
+
                         <?php endif; ?>
                     </a>
                 </li>
@@ -187,6 +182,24 @@
                 height: 300
             })
         })
+
+        function notif() {
+            $.ajax({
+                type: "post",
+                url: "<?= base_url('admin/home/realtimeNotif'); ?>",
+                dataType: "json",
+                success: function(response) {
+                    if (response.notif > 0) {
+                        $('#notifikasi').text(response.notif)
+                    } else {
+                        $('#notifikasi').text('')
+                    }
+                    setTimeout(notif, 2000)
+                }
+            });
+        }
+
+        notif();
     </script>
 </body>
 

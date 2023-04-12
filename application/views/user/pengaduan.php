@@ -113,11 +113,11 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label>Judul Aduan</label>
-								<input type="text" class="form-control" name="judulAduan" id="judulAduan">
+								<input type="text" class="form-control" name="judulAduan" required>
 							</div>
 							<div class="form-group">
 								<label>Kategori</label>
-								<select name="idKategori" class="form-control" id="idKategori">
+								<select name="idKategori" class="form-control" required>
 									<option value="">-- Pilih Kategori --</option>
 									<?php foreach ($kategori as $dt) : ?>
 										<option value="<?= $dt->id; ?>"><?= $dt->namaKategori; ?></option>
@@ -126,11 +126,11 @@
 							</div>
 							<div class="form-group">
 								<label>Kendala</label>
-								<input type="text" class="form-control" name="kendala" id="kendala">
+								<input type="text" class="form-control" name="kendala" required>
 							</div>
 							<div class="form-group">
-								<label>Gambar <sup class="text-warning">(opsional)</sup></label>
-								<input type="file" class="form-control" name="gambar" accept=".jpeg, .jpg, .png">
+								<label>Gambar</label>
+								<input type="file" class="form-control" name="gambar" accept=".jpeg, .jpg, .png" required>
 							</div>
 						</div>
 					</div>
@@ -236,28 +236,6 @@
 <script>
 	$(document).ready(function() {
 		$("#form-add").validate({
-			rules: {
-				judulAduan: {
-					required: true
-				},
-				idKategori: {
-					required: true,
-				},
-				kendala: {
-					required: true,
-				}
-			},
-			messages: {
-				judulAduan: {
-					required: "judul aduan tidak boleh kosong!"
-				},
-				idKategori: {
-					required: "kategori tidak boleh kosong!"
-				},
-				kendala: {
-					required: "kendala tidak boleh kosong!"
-				}
-			},
 			errorPlacement: function(label, element) {
 				label.addClass('arrow text-sm text-danger');
 				label.insertAfter(element);
