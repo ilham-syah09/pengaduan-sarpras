@@ -70,6 +70,9 @@ class Kategori extends CI_Controller
 		$this->db->where('id', $id);
 		$delete = $this->db->delete('kategori');
 
+		$this->db->where('idKategori', $id);
+		$this->db->delete('pengaduan');
+
 		if ($delete) {
 			$this->session->set_flashdata('toastr-success', 'Data berhasil dihapus');
 		} else {
