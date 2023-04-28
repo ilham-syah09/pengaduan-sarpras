@@ -17,6 +17,20 @@
 		<div class="container-fluid">
 			<!-- Info boxes -->
 			<div class="row">
+				<div class="col-xl-4">
+					<div class="form-group">
+						<label for="tanggal">Tanggal Awal</label>
+						<input type="date" name="tanggal_awal" id="by_tanggal_awal" class="form-control" value="<?= $tanggal_awal; ?>">
+					</div>
+				</div>
+				<div class="col-xl-4">
+					<div class="form-group">
+						<label for="tanggal">Tanggal Akhir</label>
+						<input type="date" name="tanggal_akhir" id="by_tanggal_akhir" class="form-control" value="<?= $tanggal_akhir; ?>">
+					</div>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-body">
@@ -80,3 +94,18 @@
 	<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script>
+	$('#by_tanggal_awal').change(function() {
+		let tanggal_awal = $(this).val();
+		let tanggal_akhir = $('#by_tanggal_akhir').val();
+
+		document.location.href = `<?= base_url('admin/report/${tanggal_awal}/${tanggal_akhir}'); ?>`;
+	});
+
+	$('#by_tanggal_akhir').change(function() {
+		let tanggal_awal = $('#by_tanggal_awal').val();
+		let tanggal_akhir = $(this).val();
+
+		document.location.href = `<?= base_url('admin/report/${tanggal_awal}/${tanggal_akhir}'); ?>`;
+	});
+</script>

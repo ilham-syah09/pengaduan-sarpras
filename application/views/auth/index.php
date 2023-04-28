@@ -25,9 +25,10 @@
     <div class="login-box mb-5">
         <!-- /.login-logo -->
         <div class="text-center">
-            <img src="<?= base_url('assets/image/phb.png'); ?>" alt="logo phb" class="img-fluid mb-3" width="170">
+            <img src="<?= base_url('assets/image/phb.png'); ?>" alt="logo phb" class="img-fluid mb-1" width="170">
+            <h3>Sistem Informasi Pengaduan Mahasiswa</h3>
         </div>
-        <div class="card card-outline card-primary">
+        <div class="card card-outline card-primary mt-2">
             <div class="card-header text-center">
 
                 <h4>Form Login</h4>

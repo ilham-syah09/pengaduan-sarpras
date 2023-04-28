@@ -17,14 +17,34 @@ class Report extends CI_Controller
 		$this->load->model('MAdmin', 'admin');
 	}
 
-	public function index()
+	public function index($tanggal_awal = NULL, $tanggal_akhir = NULL)
 	{
+		if (!$tanggal_awal) {
+			$tanggal_awal = date('Y-m-d');
+		}
+
+		if (!$tanggal_akhir) {
+			$tanggal_akhir = date('Y-m-d');
+		}
+
+		if ($tanggal_awal > $tanggal_akhir) {
+			$this->session->set_flashdata('toastr-error', 'Tanggal awal tidak boleh melebihi tanggal akhir !');
+
+			redirect($_SERVER['HTTP_REFERER'], 'refresh');
+		}
+
 		$data = [
 			'title'   => 'Report Pengaduan',
 			'navbar'  => 'admin/navbar',
 			'page'    => 'admin/report',
-			'report'    => $this->admin->getReportPengaduan(),
+			// 'report'    => $this->admin->getReportPengaduan(),
 			'notif'  => $this->admin->getCountAduan(),
+			'report' => $this->admin->getReportFilter([
+				'report.createdAt >=' => $tanggal_awal,
+				'report.createdAt <=' => $tanggal_akhir
+			]),
+			'tanggal_awal'  => $tanggal_awal,
+			'tanggal_akhir' => $tanggal_akhir
 		];
 
 		$this->load->view('index', $data);

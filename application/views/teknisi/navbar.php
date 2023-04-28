@@ -39,6 +39,14 @@
  						</p>
  					</a>
  				</li>
+ 				<li class="nav-item">
+ 					<a href="<?= base_url('teknisi/profile'); ?>" class="nav-link <?= ($this->uri->segment(2) === 'profile' ? 'active' : ''); ?>">
+ 						<i class="nav-icon fas fa-user"></i>
+ 						<p>
+ 							Profile
+ 						</p>
+ 					</a>
+ 				</li>
  			</ul>
  		</nav>
  		<!-- /.sidebar-menu -->
