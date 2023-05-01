@@ -56,8 +56,15 @@ $route['translate_uri_dashes'] = FALSE;
 // admin
 $route['admin'] = 'admin/home';
 
+$route['admin/report/delete/(:any)'] = 'admin/report/delete/$1';
+$route['admin/report/(:any)/(:any)'] = 'admin/report/index/$1/$2';
+
 // user
 $route['user'] = 'user/home';
 
 // user
 $route['teknisi'] = 'teknisi/home';
+
+$route['teknisi/report/edit']          = 'teknisi/report/edit';
+$route['teknisi/report/delete/(:any)'] = 'teknisi/report/delete/$1';
+$route['teknisi/report/(:any)/(:any)'] = 'teknisi/report/index/$1/$2';

@@ -17,14 +17,34 @@ class Report extends CI_Controller
 		$this->load->model('MTeknisi', 'teknisi');
 	}
 
-	public function index()
+	public function index($tanggal_awal = NULL, $tanggal_akhir = NULL)
 	{
+		if ($tanggal_awal > $tanggal_akhir) {
+			$this->session->set_flashdata('toastr-error', 'Tanggal awal tidak boleh melebihi tanggal akhir !');
+
+			redirect($_SERVER['HTTP_REFERER'], 'refresh');
+		}
+
+		if ($tanggal_awal == null && $tanggal_akhir == null) {
+			$report = $this->teknisi->getReportPengaduan([
+				'report.idUser' => $this->dt_user->id
+			]);
+		} else {
+			$report = $this->teknisi->getReportPengaduan([
+				'report.idUser'           => $this->dt_user->id,
+				'report.tanggal_mulai >=' => $tanggal_awal,
+				'report.tanggal_mulai <=' => $tanggal_akhir
+			]);
+		}
+
 		$data = [
-			'title'  => 'Report Pengaduan',
-			'navbar' => 'teknisi/navbar',
-			'page'   => 'teknisi/report',
-			'notif'  => $this->teknisi->getCountAduan(['plotPengaduan.idUser' => $this->dt_user->id]),
-			'report' => $this->teknisi->getReportPengaduan(['report.idUser' => $this->dt_user->id])
+			'title'         => 'Report Pengaduan',
+			'navbar'        => 'teknisi/navbar',
+			'page'          => 'teknisi/report',
+			'notif'         => $this->teknisi->getCountAduan(['plotPengaduan.idUser' => $this->dt_user->id]),
+			'report'        => $report,
+			'tanggal_awal'  => $tanggal_awal,
+			'tanggal_akhir' => $tanggal_akhir
 		];
 
 		$this->load->view('index', $data);

@@ -95,13 +95,6 @@
 </div>
 <!-- /.content-wrapper -->
 <script>
-	$('#by_tanggal_awal').change(function() {
-		let tanggal_awal = $(this).val();
-		let tanggal_akhir = $('#by_tanggal_akhir').val();
-
-		document.location.href = `<?= base_url('admin/report/${tanggal_awal}/${tanggal_akhir}'); ?>`;
-	});
-
 	$('#by_tanggal_akhir').change(function() {
 		let tanggal_awal = $('#by_tanggal_awal').val();
 		let tanggal_akhir = $(this).val();
