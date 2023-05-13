@@ -15,6 +15,20 @@
 	<!-- Main content -->
 	<section class="content">
 		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-4">
+					<div class="form-group">
+						<label for="tanggal">Tanggal Awal</label>
+						<input type="date" name="tanggal_awal" id="by_tanggal_awal" class="form-control" value="<?= $tanggal_awal; ?>">
+					</div>
+				</div>
+				<div class="col-xl-4">
+					<div class="form-group">
+						<label for="tanggal">Tanggal Akhir</label>
+						<input type="date" name="tanggal_akhir" id="by_tanggal_akhir" class="form-control" value="<?= $tanggal_akhir; ?>">
+					</div>
+				</div>
+			</div>
 			<!-- Info boxes -->
 			<div class="row">
 				<div class="col-lg-12">
@@ -183,7 +197,14 @@
 			},
 			wrapper: 'span'
 		});
-	})
+	});
+
+	$('#by_tanggal_akhir').change(function() {
+		let tanggal_awal = $('#by_tanggal_awal').val();
+		let tanggal_akhir = $(this).val();
+
+		document.location.href = `<?= base_url('admin/pengaduan/${tanggal_awal}/${tanggal_akhir}'); ?>`;
+	});
 
 	let status_btn = $('.status_btn');
 

@@ -17,15 +17,32 @@ class pengaduan extends CI_Controller
 		$this->load->model('MAdmin', 'admin');
 	}
 
-	public function index()
+	public function index($tanggal_awal = NULL, $tanggal_akhir = NULL)
 	{
+		if ($tanggal_awal > $tanggal_akhir) {
+			$this->session->set_flashdata('toastr-error', 'Tanggal awal tidak boleh melebihi tanggal akhir !');
+
+			redirect($_SERVER['HTTP_REFERER'], 'refresh');
+		}
+
+		if ($tanggal_awal == null && $tanggal_akhir == null) {
+			$pengaduan = $this->admin->getPengaduan();
+		} else {
+			$pengaduan = $this->admin->getPengaduan([
+				'pengaduan.tanggal >=' => $tanggal_awal,
+				'pengaduan.tanggal <=' => $tanggal_akhir
+			]);
+		}
+
 		$data = [
-			'title'   => 'Pengaduan',
-			'navbar'  => 'admin/navbar',
-			'page'    => 'admin/pengaduan',
-			'pengaduan' => $this->admin->getPengaduan(),
-			'teknisi' => $this->admin->getTeknisi(),
-			'notif'  => $this->admin->getCountAduan(),
+			'title'         => 'Pengaduan',
+			'navbar'        => 'admin/navbar',
+			'page'          => 'admin/pengaduan',
+			'pengaduan'     => $pengaduan,
+			'teknisi'       => $this->admin->getTeknisi(),
+			'notif'         => $this->admin->getCountAduan(),
+			'tanggal_awal'  => $tanggal_awal,
+			'tanggal_akhir' => $tanggal_akhir
 		];
 
 		$this->load->view('index', $data);

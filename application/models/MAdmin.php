@@ -55,11 +55,15 @@ class MAdmin extends CI_Model
 		return $this->db->get('user')->result();
 	}
 
-	public function getPengaduan()
+	public function getPengaduan($where = null)
 	{
 		$this->db->select('pengaduan.*, kategori.namaKategori, user.nama');
 		$this->db->join('kategori', 'kategori.id = pengaduan.idKategori', 'inner');
 		$this->db->join('user', 'user.id = pengaduan.idUser', 'inner');
+
+		if ($where) {
+			$this->db->where($where);
+		}
 
 		$this->db->order_by('pengaduan.tanggal', 'desc');
 
