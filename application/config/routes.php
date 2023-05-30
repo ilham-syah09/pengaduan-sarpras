@@ -58,7 +58,7 @@ $route['admin'] = 'admin/home';
 
 $route['admin/pengaduan/delete/(:any)'] = 'admin/pengaduan/delete/$1';
 $route['admin/pengaduan/status']        = 'admin/pengaduan/status';
-$route['admin/pengaduan/plot']        = 'admin/pengaduan/plot';
+$route['admin/pengaduan/plot']          = 'admin/pengaduan/plot';
 $route['admin/pengaduan/(:any)/(:any)'] = 'admin/pengaduan/index/$1/$2';
 
 $route['admin/report/delete/(:any)'] = 'admin/report/delete/$1';
